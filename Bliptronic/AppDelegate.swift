@@ -13,14 +13,14 @@ import AudioKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var mainViewController: MainViewController!
+    var mainViewController: TunerViewController!
     
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        mainViewController = MainViewController()
+        mainViewController = TunerViewController()
         
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
