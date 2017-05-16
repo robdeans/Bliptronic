@@ -1,0 +1,443 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */; };
+		E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC7091ECB76C700A6360C /* Coordinate.swift */; };
+		E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E449FB1EC9561B005F787A /* AppDelegate.swift */; };
+		E8E44A011EC9561B005F787A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E449FF1EC9561B005F787A /* Main.storyboard */; };
+		E8E44A031EC9561B005F787A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8E44A021EC9561B005F787A /* Assets.xcassets */; };
+		E8E44A061EC9561B005F787A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E44A041EC9561B005F787A /* LaunchScreen.storyboard */; };
+		E8E44A0E1EC95641005F787A /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E44A0D1EC95641005F787A /* AudioKit.framework */; };
+		E8E44A0F1EC95641005F787A /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E44A0D1EC95641005F787A /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8E44A421EC956B2005F787A /* Blip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A411EC956B2005F787A /* Blip.swift */; };
+		E8E44A441EC956C4005F787A /* Waves.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A431EC956C4005F787A /* Waves.swift */; };
+		E8E44A461EC956CB005F787A /* BlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A451EC956CB005F787A /* BlipView.swift */; };
+		E8E44A481EC956CF005F787A /* SynthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A471EC956CF005F787A /* SynthView.swift */; };
+		E8E44A4A1EC956D4005F787A /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A491EC956D4005F787A /* MainScreenView.swift */; };
+		E8E44A4C1EC956EA005F787A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A4B1EC956EA005F787A /* MainViewController.swift */; };
+		E8E44A4E1EC956F5005F787A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E44A4D1EC956F5005F787A /* Colors.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8E44A101EC95641005F787A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E8E44A0F1EC95641005F787A /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3F4F9B6ED9190661618F8FDB /* Pods-Bliptronic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.debug.xcconfig"; sourceTree = "<group>"; };
+		AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.release.xcconfig"; sourceTree = "<group>"; };
+		B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliptronic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8DFC7091ECB76C700A6360C /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		E8E449F81EC9561B005F787A /* Bliptronic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bliptronic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E449FB1EC9561B005F787A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E8E44A001EC9561B005F787A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8E44A021EC9561B005F787A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8E44A051EC9561B005F787A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E8E44A071EC9561B005F787A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8E44A0D1EC95641005F787A /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		E8E44A411EC956B2005F787A /* Blip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blip.swift; sourceTree = "<group>"; };
+		E8E44A431EC956C4005F787A /* Waves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waves.swift; sourceTree = "<group>"; };
+		E8E44A451EC956CB005F787A /* BlipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipView.swift; sourceTree = "<group>"; };
+		E8E44A471EC956CF005F787A /* SynthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynthView.swift; sourceTree = "<group>"; };
+		E8E44A491EC956D4005F787A /* MainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		E8E44A4B1EC956EA005F787A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E8E44A4D1EC956F5005F787A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8E449F51EC9561B005F787A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E44A0E1EC95641005F787A /* AudioKit.framework in Frameworks */,
+				70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C3F4E668E616261C90C4AA0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8E449EF1EC9561B005F787A = {
+			isa = PBXGroup;
+			children = (
+				E8E44A0D1EC95641005F787A /* AudioKit.framework */,
+				E8E449FA1EC9561B005F787A /* Bliptronic */,
+				E8E449F91EC9561B005F787A /* Products */,
+				F7CBCA97095003F20649F4C5 /* Pods */,
+				C3F4E668E616261C90C4AA0B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E8E449F91EC9561B005F787A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8E449F81EC9561B005F787A /* Bliptronic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8E449FA1EC9561B005F787A /* Bliptronic */ = {
+			isa = PBXGroup;
+			children = (
+				E8E449FB1EC9561B005F787A /* AppDelegate.swift */,
+				E8E44A411EC956B2005F787A /* Blip.swift */,
+				E8E44A431EC956C4005F787A /* Waves.swift */,
+				E8DFC7091ECB76C700A6360C /* Coordinate.swift */,
+				E8E44A451EC956CB005F787A /* BlipView.swift */,
+				E8E44A471EC956CF005F787A /* SynthView.swift */,
+				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
+				E8E44A4B1EC956EA005F787A /* MainViewController.swift */,
+				E8E449FF1EC9561B005F787A /* Main.storyboard */,
+				E8E44A4D1EC956F5005F787A /* Colors.swift */,
+				E8E44A021EC9561B005F787A /* Assets.xcassets */,
+				E8E44A041EC9561B005F787A /* LaunchScreen.storyboard */,
+				E8E44A071EC9561B005F787A /* Info.plist */,
+			);
+			path = Bliptronic;
+			sourceTree = "<group>";
+		};
+		F7CBCA97095003F20649F4C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F4F9B6ED9190661618F8FDB /* Pods-Bliptronic.debug.xcconfig */,
+				AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8E449F71EC9561B005F787A /* Bliptronic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8E44A0A1EC9561B005F787A /* Build configuration list for PBXNativeTarget "Bliptronic" */;
+			buildPhases = (
+				7FB0DA093FABB1BDF51686DE /* [CP] Check Pods Manifest.lock */,
+				E8E449F41EC9561B005F787A /* Sources */,
+				E8E449F51EC9561B005F787A /* Frameworks */,
+				E8E449F61EC9561B005F787A /* Resources */,
+				E8E44A101EC95641005F787A /* Embed Frameworks */,
+				67472AEDECD87C04BE83A455 /* [CP] Embed Pods Frameworks */,
+				49159D13C61A76D3621B3AA7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bliptronic;
+			productName = Bliptronic;
+			productReference = E8E449F81EC9561B005F787A /* Bliptronic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8E449F01EC9561B005F787A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Robert Deans";
+				TargetAttributes = {
+					E8E449F71EC9561B005F787A = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 9TAE6F86BV;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E8E449F31EC9561B005F787A /* Build configuration list for PBXProject "Bliptronic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8E449EF1EC9561B005F787A;
+			productRefGroup = E8E449F91EC9561B005F787A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8E449F71EC9561B005F787A /* Bliptronic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8E449F61EC9561B005F787A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E44A061EC9561B005F787A /* LaunchScreen.storyboard in Resources */,
+				E8E44A031EC9561B005F787A /* Assets.xcassets in Resources */,
+				E8E44A011EC9561B005F787A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49159D13C61A76D3621B3AA7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67472AEDECD87C04BE83A455 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FB0DA093FABB1BDF51686DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8E449F41EC9561B005F787A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E44A441EC956C4005F787A /* Waves.swift in Sources */,
+				E8E44A4E1EC956F5005F787A /* Colors.swift in Sources */,
+				E8E44A461EC956CB005F787A /* BlipView.swift in Sources */,
+				E8E44A4A1EC956D4005F787A /* MainScreenView.swift in Sources */,
+				E8E44A481EC956CF005F787A /* SynthView.swift in Sources */,
+				E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */,
+				E8E44A421EC956B2005F787A /* Blip.swift in Sources */,
+				E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */,
+				E8E44A4C1EC956EA005F787A /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E8E449FF1EC9561B005F787A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8E44A001EC9561B005F787A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E8E44A041EC9561B005F787A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8E44A051EC9561B005F787A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E8E44A081EC9561B005F787A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E8E44A091EC9561B005F787A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8E44A0B1EC9561B005F787A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F4F9B6ED9190661618F8FDB /* Pods-Bliptronic.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9TAE6F86BV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Bliptronic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E8E44A0C1EC9561B005F787A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9TAE6F86BV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Bliptronic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8E449F31EC9561B005F787A /* Build configuration list for PBXProject "Bliptronic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8E44A081EC9561B005F787A /* Debug */,
+				E8E44A091EC9561B005F787A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8E44A0A1EC9561B005F787A /* Build configuration list for PBXNativeTarget "Bliptronic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8E44A0B1EC9561B005F787A /* Debug */,
+				E8E44A0C1EC9561B005F787A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8E449F01EC9561B005F787A /* Project object */;
+}
