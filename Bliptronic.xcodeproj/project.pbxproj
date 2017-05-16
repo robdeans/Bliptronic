@@ -10,6 +10,7 @@
 		70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */; };
 		E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC7091ECB76C700A6360C /* Coordinate.swift */; };
 		E8DFC70E1ECB7DBD00A6360C /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */; };
+		E8DFC7101ECB81CC00A6360C /* PitchFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */; };
 		E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E449FB1EC9561B005F787A /* AppDelegate.swift */; };
 		E8E44A011EC9561B005F787A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E449FF1EC9561B005F787A /* Main.storyboard */; };
 		E8E44A031EC9561B005F787A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8E44A021EC9561B005F787A /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliptronic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DFC7091ECB76C700A6360C /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
+		E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchFrequency.swift; sourceTree = "<group>"; };
 		E8E449F81EC9561B005F787A /* Bliptronic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bliptronic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E449FB1EC9561B005F787A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8E44A001EC9561B005F787A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				E8E44A041EC9561B005F787A /* LaunchScreen.storyboard */,
 				E8E44A071EC9561B005F787A /* Info.plist */,
 				E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */,
+				E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */,
 			);
 			path = Bliptronic;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E44A441EC956C4005F787A /* Waves.swift in Sources */,
+				E8DFC7101ECB81CC00A6360C /* PitchFrequency.swift in Sources */,
 				E8E44A4E1EC956F5005F787A /* Colors.swift in Sources */,
 				E8E44A461EC956CB005F787A /* BlipView.swift in Sources */,
 				E8E44A4A1EC956D4005F787A /* MainScreenView.swift in Sources */,
