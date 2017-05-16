@@ -20,14 +20,14 @@ class TunerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AKSettings.audioInputEnabled = true
-        tracker = AKFrequencyTracker(microphone, hopSize: 60, peakCount: 1320)
+        tracker = AKFrequencyTracker(microphone, hopSize: 60, peakCount: 560)
         silence = AKBooster(tracker!, gain: 0)
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(detectFrequency), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(detectFrequency), userInfo: nil, repeats: true)
         AudioKit.output = silence
         
         AudioKit.start()
@@ -54,20 +54,20 @@ class TunerViewController: UIViewController {
     
     func detectFrequency() {
         switch tracker.frequency {
-        case 80.41...84:
+        case 81.91...82.91:
             print("E")
-        case 108...120:
+        case 109.5...110.5:
             print("A")
-        case 144.83...146:
+        case 146.33...147.33:
             print("D")
-        case 194...198:
+        case 195.5...196.5:
             print("G")
-        case 244.94...248:
+        case 246.44...247.44:
             print("B")
-        case 327.63...331:
+        case 329.13...330.13:
             print("e")
         default:
-            print("not in tune")
+            print("not in tune \(tracker.frequency)")
         }
     }
     
