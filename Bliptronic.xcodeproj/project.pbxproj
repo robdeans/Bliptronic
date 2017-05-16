@@ -80,6 +80,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E8DFC70B1ECB789F00A6360C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E8E44A411EC956B2005F787A /* Blip.swift */,
+				E8E44A431EC956C4005F787A /* Waves.swift */,
+				E8DFC7091ECB76C700A6360C /* Coordinate.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E8DFC70C1ECB78AA00A6360C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8E44A451EC956CB005F787A /* BlipView.swift */,
+				E8E44A471EC956CF005F787A /* SynthView.swift */,
+				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		E8E449EF1EC9561B005F787A = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				E8E449FB1EC9561B005F787A /* AppDelegate.swift */,
-				E8E44A411EC956B2005F787A /* Blip.swift */,
-				E8E44A431EC956C4005F787A /* Waves.swift */,
-				E8DFC7091ECB76C700A6360C /* Coordinate.swift */,
-				E8E44A451EC956CB005F787A /* BlipView.swift */,
-				E8E44A471EC956CF005F787A /* SynthView.swift */,
-				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
+				E8DFC70B1ECB789F00A6360C /* Models */,
+				E8DFC70C1ECB78AA00A6360C /* Views */,
 				E8E44A4B1EC956EA005F787A /* MainViewController.swift */,
 				E8E449FF1EC9561B005F787A /* Main.storyboard */,
 				E8E44A4D1EC956F5005F787A /* Colors.swift */,

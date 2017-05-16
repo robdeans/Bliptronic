@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class BlipView: UIView {
+class BlipView: UIButton {
     
     var blip: Blip!
     
@@ -24,7 +24,7 @@ class BlipView: UIView {
     
     convenience init(column: Int, row: Int) {
         self.init(frame: CGRect.zero)
-
+        
         blip = Blip(column: column, row: row)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(isTapped))
@@ -53,7 +53,6 @@ extension BlipView {
         } else {
             print("Blip in column \(blip.column) row \(blip.row) was de-activated!")
             backgroundColor = UIColor.blipInactive
-
             blip.noteOff()
         }
         
