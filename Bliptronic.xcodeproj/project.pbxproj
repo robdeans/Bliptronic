@@ -192,7 +192,7 @@
 				TargetAttributes = {
 					E8E449F71EC9561B005F787A = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 9TAE6F86BV;
+						DevelopmentTeam = Y95395R97T;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -417,7 +417,7 @@
 			baseConfigurationReference = 3F4F9B6ED9190661618F8FDB /* Pods-Bliptronic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9TAE6F86BV;
+				DEVELOPMENT_TEAM = Y95395R97T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -435,7 +435,7 @@
 			baseConfigurationReference = AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9TAE6F86BV;
+				DEVELOPMENT_TEAM = Y95395R97T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

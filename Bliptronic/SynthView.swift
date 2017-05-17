@@ -53,7 +53,7 @@ class SynthView: UIView {
         
         let stackviewArray = [columnStackView1, columnStackView2, columnStackView3, columnStackView4, columnStackView5, columnStackView6, columnStackView7, columnStackView8]
         
-        var columnCounter = 1
+        var columnCounter = 0
         for column in stackviewArray {
             column.axis = .vertical
             column.distribution = .fillEqually
@@ -61,7 +61,7 @@ class SynthView: UIView {
             
             
             var rowCounter = 8
-            for _ in 1...8 {
+            for _ in 0...7 {
                 
                 let blipView = BlipView(column: columnCounter, row: rowCounter)
                 

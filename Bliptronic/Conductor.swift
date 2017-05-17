@@ -30,7 +30,7 @@ class Conductor {
     
     init() {
         
-
+        
         midiNode = AKMIDINode(node: synthesizer)
         midiNode.enableMIDI(midi.client, name: "synth midi in")
         
@@ -50,11 +50,13 @@ class Conductor {
     }
     
     func setupTrack() {
-        let _ = sequence.newTrack()
-        sequence.setLength(sequenceLength)
+
         
-        sequence.tracks[0].setMIDIOutput(midiNode.midiIn)
-        
+        for number in 0...7 {
+            let _ = sequence.newTrack()
+            sequence.setLength(sequenceLength)
+            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
+        }
         
         sequence.enableLooping()
         sequence.setTempo(110)
@@ -66,11 +68,11 @@ class Conductor {
         let position = AKDuration(beats: Double(blip.column))
         let duration = AKDuration(seconds: 0.4)
         let note = blip.row + 60
-        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
         let note = blip.row + 60
-        sequence.tracks[0].clearNote(MIDINoteNumber(note))
+        sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
 }
