@@ -13,17 +13,13 @@ class MainViewController: UIViewController {
     
     var mainScreenView: MainScreenView!
     
-    var conductor: Conductor!
-    
     var playButton: UIButton!
     var stopButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
-        
-        conductor = Conductor()
-        
+                
         mainScreenView = MainScreenView()
         
         playButton = UIButton()
@@ -48,7 +44,6 @@ class MainViewController: UIViewController {
         stopButton.snp.makeConstraints {
             $0.leading.bottom.equalToSuperview()
         }
-        AudioKit.start()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,11 +53,11 @@ class MainViewController: UIViewController {
 
 
     func play() {
-        conductor.sequencer.play()
+//        conductor.sequencer.play()
     }
     
     func stop() {
-        conductor.sequencer.stop()
+//        conductor.sequencer.stop()
     }
     
 }

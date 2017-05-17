@@ -27,9 +27,7 @@ class BlipView: UIButton {
         
         blip = Blip(column: column, row: row)
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(isTapped))
-        
-        self.addGestureRecognizer(gesture)
+        self.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
         
         if blip.isActive {
             backgroundColor = UIColor.blipActive
