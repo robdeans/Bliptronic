@@ -24,17 +24,20 @@ class BlipView: UIButton {
     
     convenience init(column: Int, row: Int) {
         self.init(frame: CGRect.zero)
-        self.backgroundColor = UIColor().generateRandomColor()
         
         blip = Blip(column: column, row: row)
         
-        self.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+//        self.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
         
         if blip.isActive {
             backgroundColor = UIColor.blipActive
         } else {
             backgroundColor = UIColor.blipInactive
         }
+        
+//        self.backgroundColor = UIColor().generateRandomColor()
+
+        
     }
     
     
@@ -42,17 +45,6 @@ class BlipView: UIButton {
 
 extension BlipView {
     
-    func isTapped() {
-        blip.isActive = !blip.isActive
-        
-        if blip.isActive {
-            backgroundColor = UIColor.blipActive
-            blip.noteOn()
-        } else {
-            backgroundColor = UIColor.blipInactive
-            blip.noteOff()
-        }
-        
-    }
+
     
 }

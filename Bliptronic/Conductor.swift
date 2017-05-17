@@ -22,6 +22,12 @@ class Conductor {
     var sequence = AKSequencer()
     let sequenceLength = AKDuration(beats: 8.0)
     
+    var currentTempo = 110.0 {
+        didSet {
+            sequence.setTempo(currentTempo)
+        }
+    }
+    
     init() {
         
 
@@ -38,7 +44,6 @@ class Conductor {
         compressor.attackTime = 0.01
         compressor.releaseTime = 0.3
         
-        
         setupTrack()
         
         AudioKit.output = compressor
@@ -47,19 +52,20 @@ class Conductor {
     func setupTrack() {
         let _ = sequence.newTrack()
         sequence.setLength(sequenceLength)
+        
         sequence.tracks[0].setMIDIOutput(midiNode.midiIn)
         
-        generateNote(for: nil)
+        
         sequence.enableLooping()
-        sequence.setTempo(100)
+        sequence.setTempo(110)
         sequence.play()
         
     }
     
-    func generateNote(for blip: Blip?) {
-        let position = AKDuration(beats: 1)
+    func generateNote(for blip: Blip) {
+        let position = AKDuration(beats: Double(blip.column))
         let duration = AKDuration(seconds: 0.4)
-        
-        sequence.tracks[0].add(noteNumber: 60, velocity: 100, position: position, duration: duration)
+        let note = blip.row + 60
+        sequence.tracks[0].add(noteNumber: UInt8(note), velocity: 120, position: position, duration: duration)
     }
 }

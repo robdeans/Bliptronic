@@ -16,14 +16,8 @@ struct Blip {
     var row: Int
     
     let sawtooth = AKTable(.sawtooth, count: 4096)
-    let square = AKTable(.square, count: 16)
-    
     var oscillator: AKOscillator!
     
-    
-    //    var currentMIDINote = 0
-    var currentAmplitude = 0.2
-    var currentRampTime = 0.05
     
     init(column: Int, row: Int) {
         isActive = false
@@ -31,8 +25,8 @@ struct Blip {
         self.column = column
         
         oscillator = AKOscillator(waveform: sawtooth)
-        oscillator.rampTime = currentRampTime
-        oscillator.amplitude = currentAmplitude
+        oscillator.rampTime = 0.2
+        oscillator.amplitude = 0.05
         
         switch row {
         case 1:
@@ -60,14 +54,16 @@ struct Blip {
     
     func noteOn() {
         print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was activated!")
-        oscillator.amplitude = currentAmplitude
-        oscillator.play()
+        
+//        oscillator.amplitude = 0.05
+//        oscillator.play()
     }
     
     func noteOff() {
         print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was de-activated!")
-        oscillator.amplitude = 0
-        oscillator.stop()
+        
+//        oscillator.amplitude = 0
+//        oscillator.stop()
     }
     
 }

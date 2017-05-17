@@ -12,7 +12,7 @@ import SnapKit
 import AudioKit
 
 class SynthView: UIView {
-
+    
     
     let conductor = Conductor()
     
@@ -28,7 +28,7 @@ class SynthView: UIView {
     var horizontalStackView = UIStackView()
     
     let blipSpacing: CGFloat = 5
-
+    
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +49,7 @@ class SynthView: UIView {
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
         horizontalStackView.spacing = blipSpacing
-
+        
         
         let stackviewArray = [columnStackView1, columnStackView2, columnStackView3, columnStackView4, columnStackView5, columnStackView6, columnStackView7, columnStackView8]
         
@@ -64,14 +64,15 @@ class SynthView: UIView {
             for _ in 1...8 {
                 
                 let blipView = BlipView(column: columnCounter, row: rowCounter)
-
-                conductor.mixer.connect(blipView.blip.oscillator)
+                
+                blipView.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+                //                conductor.mixer.connect(blipView.blip.oscillator)
                 
                 column.addArrangedSubview(blipView)
-
+                
                 rowCounter -= 1
             }
-
+            
             horizontalStackView.addArrangedSubview(column)
             column.snp.makeConstraints {
                 $0.height.equalToSuperview()
@@ -82,11 +83,33 @@ class SynthView: UIView {
     }
     
     func constrain() {
-
+        
         addSubview(horizontalStackView)
         horizontalStackView.snp.makeConstraints {
             $0.centerX.centerY.height.equalToSuperview()
             $0.width.equalToSuperview().offset(blipSpacing * -2)
+        }
+        
+    }
+    
+}
+
+extension SynthView {
+    
+    func isTapped(_ sender: UIButton) {
+        if let sender = sender as? BlipView {
+            sender.blip.isActive = !sender.blip.isActive
+            
+            if sender.blip.isActive {
+                sender.backgroundColor = UIColor.blipActive
+                sender.blip.noteOn()
+                
+                conductor.generateNote(for: sender.blip)
+                
+            } else {
+                sender.backgroundColor = UIColor.blipInactive
+                sender.blip.noteOff()
+            }
         }
         
     }
