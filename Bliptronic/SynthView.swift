@@ -109,6 +109,7 @@ extension SynthView {
             } else {
                 sender.backgroundColor = UIColor.blipInactive
                 sender.blip.noteOff()
+                conductor.removeNote(for: sender.blip)
             }
         }
         

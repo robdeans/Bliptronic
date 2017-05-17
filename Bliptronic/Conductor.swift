@@ -66,6 +66,13 @@ class Conductor {
         let position = AKDuration(beats: Double(blip.column))
         let duration = AKDuration(seconds: 0.4)
         let note = blip.row + 60
-        sequence.tracks[0].add(noteNumber: UInt8(note), velocity: 120, position: position, duration: duration)
+        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+    }
+    
+    func removeNote(for blip: Blip) {
+        let position = AKDuration(beats: Double(blip.column))
+
+        let note = blip.row + 60
+        sequence.tracks[0].clearNote(MIDINoteNumber(note))
     }
 }
