@@ -50,7 +50,7 @@ class Conductor {
     }
     
     func setupTrack() {
-
+        
         
         for number in 0...7 {
             let _ = sequence.newTrack()
@@ -67,12 +67,56 @@ class Conductor {
     func generateNote(for blip: Blip) {
         let position = AKDuration(beats: Double(blip.column))
         let duration = AKDuration(seconds: 0.4)
-        let note = blip.row + 60
+        var note: UInt8 = 0
+        
+        switch blip.row {
+        case 1:
+            note = 60
+        case 2:
+            note = 62
+        case 3:
+            note = 64
+        case 4:
+            note = 65
+        case 5:
+            note = 67
+        case 6:
+            note = 69
+        case 7:
+            note = 71
+        case 8:
+            note = 72
+        default:
+            break
+        }
+        
         sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
-        let note = blip.row + 60
+        var note: UInt8 = 0
+        
+        switch blip.row {
+        case 1:
+            note = 60
+        case 2:
+            note = 62
+        case 3:
+            note = 64
+        case 4:
+            note = 65
+        case 5:
+            note = 67
+        case 6:
+            note = 69
+        case 7:
+            note = 71
+        case 8:
+            note = 72
+        default:
+            break
+        }
+        
         sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
 }
