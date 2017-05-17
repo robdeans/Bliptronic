@@ -47,11 +47,9 @@ extension BlipView {
         blip.isActive = !blip.isActive
         
         if blip.isActive {
-            print("Blip in column \(blip.column) row \(blip.row) was activated!")
             backgroundColor = UIColor.blipActive
             blip.noteOn()
         } else {
-            print("Blip in column \(blip.column) row \(blip.row) was de-activated!")
             backgroundColor = UIColor.blipInactive
             blip.noteOff()
         }

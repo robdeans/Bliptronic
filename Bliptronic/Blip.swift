@@ -20,7 +20,8 @@ struct Blip {
     
     var oscillator: AKOscillator!
     
-    var currentMIDINote = 0
+    
+    //    var currentMIDINote = 0
     var currentAmplitude = 0.2
     var currentRampTime = 0.05
     
@@ -29,11 +30,41 @@ struct Blip {
         self.row = row
         self.column = column
         
-        if row == 1 && column == 1 {
-            oscillator = AKOscillator()
-//            AudioKit.output = oscillator
-//            AudioKit.start()
+        
+        
+        //        if row == 1 && column == 1 {
+        
+        oscillator = AKOscillator(waveform: sawtooth)
+        oscillator.rampTime = currentRampTime
+        oscillator.amplitude = currentAmplitude
+        
+        switch row {
+        case 1:
+            oscillator.frequency = 261.63
+            print(1)
+        case 2:
+            oscillator.frequency = 293.66
+            print(1)
+        case 3:
+            oscillator.frequency = 329.63
+        case 4:
+            oscillator.frequency = 349.23
+        case 5:
+            oscillator.frequency = 392.00
+        case 6:
+            oscillator.frequency = 440.00
+        case 7:
+            oscillator.frequency = 493.88
+        case 8:
+            oscillator.frequency = 523.25
+        default:
+            print("not a note")
+            
         }
+        
+
+        //            AudioKit.start()
+        //        }
     }
     
     
@@ -43,23 +74,24 @@ struct Blip {
         
         
         oscillator = AKOscillator(waveform: sawtooth)
-        
-        AudioKit.output = oscillator
-        AudioKit.start()
-        
-        
         oscillator.rampTime = currentRampTime
         oscillator.amplitude = currentAmplitude
+        
+        AudioKit.output = oscillator
+                AudioKit.start()
+        
+        
         
     }
     
     func noteOn() {
-        oscillator.rampTime = currentRampTime
+        print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was activated!")
         oscillator.amplitude = currentAmplitude
         oscillator.play()
     }
     
     func noteOff() {
+        print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was de-activated!")
         oscillator.amplitude = 0
         oscillator.stop()
     }

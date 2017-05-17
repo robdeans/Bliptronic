@@ -41,8 +41,8 @@ class Conductor {
         mixer.connect(bassDrum)
 
         
-        AudioKit.output = compressor
-        AudioKit.start()
+//        AudioKit.output = compressor
+//        AudioKit.start()
         
         setupTracks()
     }

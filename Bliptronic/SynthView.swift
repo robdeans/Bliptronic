@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import AudioKit
 
 class SynthView: UIView {
+    var mixer = AKMixer()
+
+    
     
     var columnStackView1 = UIStackView()
     var columnStackView2 = UIStackView()
@@ -61,7 +65,7 @@ class SynthView: UIView {
                 
                 let blipView = BlipView(column: columnCounter, row: rowCounter)
 
-                
+                mixer.connect(blipView.blip.oscillator)
                 blipView.backgroundColor = UIColor().generateRandomColor()
                 
                 column.addArrangedSubview(blipView)
@@ -75,6 +79,8 @@ class SynthView: UIView {
             }
             columnCounter += 1
         }
+        
+        AudioKit.output = mixer
     }
     
     func constrain() {

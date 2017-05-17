@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
         stopButton.snp.makeConstraints {
             $0.leading.bottom.equalToSuperview()
         }
+        AudioKit.start()
     }
 
     override func didReceiveMemoryWarning() {
