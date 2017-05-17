@@ -70,8 +70,6 @@ class Conductor {
     }
     
     func removeNote(for blip: Blip) {
-        let position = AKDuration(beats: Double(blip.column))
-
         let note = blip.row + 60
         sequence.tracks[0].clearNote(MIDINoteNumber(note))
     }

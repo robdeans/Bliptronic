@@ -54,11 +54,11 @@ class MainViewController: UIViewController {
     
     
     func play() {
-        //        conductor.sequencer.play()
+        mainScreenView.synthView.conductor.sequence.play()
     }
     
     func stop() {
-        //        conductor.sequencer.stop()
+        mainScreenView.synthView.conductor.sequence.stop()
     }
     
 }
