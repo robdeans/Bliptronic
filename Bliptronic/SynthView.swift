@@ -25,7 +25,6 @@ class SynthView: UIView {
     var columnStackView6 = UIStackView()
     var columnStackView7 = UIStackView()
     var columnStackView8 = UIStackView()
-    
     var horizontalStackView = UIStackView()
     
     let blipSpacing: CGFloat = 5
@@ -61,17 +60,16 @@ class SynthView: UIView {
             column.spacing = blipSpacing
             
             
-            var rowCounter = 1
+            var rowCounter = 8
             for _ in 1...8 {
                 
                 let blipView = BlipView(column: columnCounter, row: rowCounter)
 
                 conductor.mixer.connect(blipView.blip.oscillator)
-                blipView.backgroundColor = UIColor().generateRandomColor()
                 
                 column.addArrangedSubview(blipView)
 
-                rowCounter += 1
+                rowCounter -= 1
             }
 
             horizontalStackView.addArrangedSubview(column)

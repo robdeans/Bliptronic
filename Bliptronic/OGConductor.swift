@@ -8,35 +8,41 @@
 
 import AudioKit
 
-class ExExConductor {
+class OGConductor {
+    // MIDI
     let midi = AKMIDI()
 
+    // INSTRUMENTS
     var fmOscillator = AKFMOscillatorBank()
     var melodicSound: AKMIDINode!
     var reverb: AKReverb2!
-    var bassDrum = AKSynthKick()
-    var snareDrum = AKSynthSnare()
-    var snareGhost = AKSynthSnare(duration: 0.06, resonance: 0.3)
-    var snareMixer = AKMixer()
-    var snareVerb: AKReverb!
+//    var bassDrum = AKSynthKick()
+//    var snareDrum = AKSynthSnare()
+//    var snareGhost = AKSynthSnare(duration: 0.06, resonance: 0.3)
+//    var snareMixer = AKMixer()
+//    var snareVerb: AKReverb!
 
+    // MIX / COMPRESSOR
     var mixer = AKMixer()
     var compressor: AKCompressor!
 
-
-    
+    // SEQUENCE AND DURATION
     var sequence = AKSequencer()
     let sequenceLength = AKDuration(beats: 8.0)
     
+    // TEMPO
     var currentTempo = 110.0 {
         didSet {
             sequence.setTempo(currentTempo)
         }
     }
 
+    // MELODY NOTES
     let scale1: [Int] = [0, 2, 4, 7, 9]
     let scale2: [Int] = [0, 3, 5, 7, 10]
 
+    
+    // MARK: Initialization
     init() {
         fmOscillator.modulatingMultiplier = 3
         fmOscillator.modulationIndex = 0.3
@@ -50,13 +56,13 @@ class ExExConductor {
         reverb.randomizeReflections = 600
         reverb.gain = 1
 
-        bassDrum.enableMIDI(midi.client, name: "bassDrum midi in")
-        snareDrum.enableMIDI(midi.client, name: "snareDrum midi in")
-        snareGhost.enableMIDI(midi.client, name: "snareGhost midi in")
-
-        snareMixer.connect(snareDrum)
-        snareMixer.connect(snareGhost)
-        snareVerb = AKReverb(snareMixer)
+//        bassDrum.enableMIDI(midi.client, name: "bassDrum midi in")
+//        snareDrum.enableMIDI(midi.client, name: "snareDrum midi in")
+//        snareGhost.enableMIDI(midi.client, name: "snareGhost midi in")
+//
+//        snareMixer.connect(snareDrum)
+//        snareMixer.connect(snareGhost)
+//        snareVerb = AKReverb(snareMixer)
 
         compressor = AKCompressor(mixer)
 
@@ -67,10 +73,10 @@ class ExExConductor {
         compressor.releaseTime = 0.3
 
         mixer.connect(reverb)
-        mixer.connect(bassDrum)
-        mixer.connect(snareDrum)
-        mixer.connect(snareGhost)
-        mixer.connect(snareVerb)
+//        mixer.connect(bassDrum)
+//        mixer.connect(snareDrum)
+//        mixer.connect(snareGhost)
+//        mixer.connect(snareVerb)
 
         AudioKit.output = compressor
         AudioKit.start()
@@ -82,17 +88,17 @@ class ExExConductor {
         sequence.tracks[Sequence.melody.rawValue].setMIDIOutput(melodicSound.midiIn)
         generateNewMelodicSequence(minor: false)
 
-        let _ = sequence.newTrack()
-        sequence.tracks[Sequence.bassDrum.rawValue].setMIDIOutput(bassDrum.midiIn)
-        generateBassDrumSequence()
-
-        let _ = sequence.newTrack()
-        sequence.tracks[Sequence.snareDrum.rawValue].setMIDIOutput(snareDrum.midiIn)
-        generateSnareDrumSequence()
-
-        let _ = sequence.newTrack()
-        sequence.tracks[Sequence.snareGhost.rawValue].setMIDIOutput(snareGhost.midiIn)
-        generateSnareDrumGhostSequence()
+//        let _ = sequence.newTrack()
+//        sequence.tracks[Sequence.bassDrum.rawValue].setMIDIOutput(bassDrum.midiIn)
+//        generateBassDrumSequence()
+//
+//        let _ = sequence.newTrack()
+//        sequence.tracks[Sequence.snareDrum.rawValue].setMIDIOutput(snareDrum.midiIn)
+//        generateSnareDrumSequence()
+//
+//        let _ = sequence.newTrack()
+//        sequence.tracks[Sequence.snareGhost.rawValue].setMIDIOutput(snareGhost.midiIn)
+//        generateSnareDrumGhostSequence()
 
         sequence.enableLooping()
         sequence.setTempo(100)
@@ -101,6 +107,8 @@ class ExExConductor {
 
     func generateNewMelodicSequence(_ stepSize: Float = 1 / 8, minor: Bool = false, clear: Bool = true) {
         if clear { sequence.tracks[Sequence.melody.rawValue].clear() }
+        
+        
         sequence.setLength(sequenceLength)
         let numberOfSteps = Int(Float(sequenceLength.beats) / stepSize)
         //print("steps in sequence: \(numberOfSteps)")
@@ -121,6 +129,7 @@ class ExExConductor {
                 }
                 //print("octave offset is \(octaveOffset)")
                 let noteToAdd = 60 + scale[Int(scaleOffset)] + octaveOffset
+                
                 sequence.tracks[Sequence.melody.rawValue].add(noteNumber: MIDINoteNumber(noteToAdd),
                                                               velocity: 100,
                                                               position: AKDuration(beats: step),

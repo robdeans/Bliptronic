@@ -30,10 +30,6 @@ struct Blip {
         self.row = row
         self.column = column
         
-        
-        
-        //        if row == 1 && column == 1 {
-        
         oscillator = AKOscillator(waveform: sawtooth)
         oscillator.rampTime = currentRampTime
         oscillator.amplitude = currentAmplitude
@@ -41,10 +37,8 @@ struct Blip {
         switch row {
         case 1:
             oscillator.frequency = 261.63
-            print(1)
         case 2:
             oscillator.frequency = 293.66
-            print(1)
         case 3:
             oscillator.frequency = 329.63
         case 4:
@@ -61,28 +55,8 @@ struct Blip {
             print("not a note")
             
         }
-        
+    }
 
-        //            AudioKit.start()
-        //        }
-    }
-    
-    
-    
-    
-    mutating func makeOscillator() {
-        
-        
-        oscillator = AKOscillator(waveform: sawtooth)
-        oscillator.rampTime = currentRampTime
-        oscillator.amplitude = currentAmplitude
-        
-        AudioKit.output = oscillator
-                AudioKit.start()
-        
-        
-        
-    }
     
     func noteOn() {
         print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was activated!")

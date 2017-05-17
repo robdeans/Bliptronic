@@ -19,8 +19,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
-                
+        
         mainScreenView = MainScreenView()
+        
+        view.addSubview(mainScreenView)
+        mainScreenView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         
         playButton = UIButton()
         playButton.setTitle("▶️", for: .normal)
@@ -29,11 +35,6 @@ class MainViewController: UIViewController {
         stopButton = UIButton()
         stopButton.setTitle("⏹", for: .normal)
         stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
-
-        view.addSubview(mainScreenView)
-        mainScreenView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
         
         view.addSubview(playButton)
         playButton.snp.makeConstraints {
@@ -45,19 +46,19 @@ class MainViewController: UIViewController {
             $0.leading.bottom.equalToSuperview()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
     func play() {
-//        conductor.sequencer.play()
+        //        conductor.sequencer.play()
     }
     
     func stop() {
-//        conductor.sequencer.stop()
+        //        conductor.sequencer.stop()
     }
     
 }

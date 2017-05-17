@@ -24,6 +24,7 @@ class BlipView: UIButton {
     
     convenience init(column: Int, row: Int) {
         self.init(frame: CGRect.zero)
+        self.backgroundColor = UIColor().generateRandomColor()
         
         blip = Blip(column: column, row: row)
         
