@@ -31,8 +31,8 @@ struct Blip {
         
         if row == 1 && column == 1 {
             oscillator = AKOscillator()
-            AudioKit.output = oscillator
-            AudioKit.start()
+//            AudioKit.output = oscillator
+//            AudioKit.start()
         }
     }
     

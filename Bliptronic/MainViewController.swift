@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
     
     var mainScreenView: MainScreenView!
     
+    var conductor: Conductor!
     
     var playButton: UIButton!
     var stopButton: UIButton!
@@ -21,13 +22,17 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
         
-        mainScreenView = MainScreenView()
-        playButton = UIButton()
-        stopButton = UIButton()
+        conductor = Conductor()
         
-
+        mainScreenView = MainScreenView()
+        
+        playButton = UIButton()
         playButton.setTitle("▶️", for: .normal)
+        playButton.addTarget(self, action: #selector(play), for: .touchUpInside)
+        
+        stopButton = UIButton()
         stopButton.setTitle("⏹", for: .normal)
+        stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
 
         view.addSubview(mainScreenView)
         mainScreenView.snp.makeConstraints {
@@ -51,5 +56,13 @@ class MainViewController: UIViewController {
     }
 
 
+    func play() {
+        conductor.sequencer.play()
+    }
+    
+    func stop() {
+        conductor.sequencer.stop()
+    }
+    
 }
 
