@@ -12,7 +12,9 @@ import SnapKit
 
 class MainScreenView: UIView {
     
+    var instrumentScrollView: UIScrollView!
     var synthView: SynthView!
+    var knobView: KnobView!
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -31,15 +33,34 @@ class MainScreenView: UIView {
     
     func configure() {
         synthView = SynthView()
-        backgroundColor = UIColor.cyan
+        knobView = KnobView()
+        instrumentScrollView = UIScrollView()
+        instrumentScrollView.backgroundColor = UIColor.lightGray
+        instrumentScrollView.layer.cornerRadius = 5
     }
     
     func constrain() {
+        addSubview(instrumentScrollView)
+        instrumentScrollView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height)
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(0.95)
+            $0.height.equalToSuperview().dividedBy(14)
+        }
+        
         addSubview(synthView)
         synthView.snp.makeConstraints {
-            $0.width.centerX.centerY.equalToSuperview()
+            $0.width.centerX.equalToSuperview()
             $0.height.equalTo(synthView.snp.width)
+            $0.top.equalTo(instrumentScrollView.snp.bottom)
         }
+        
+        addSubview(knobView)
+        knobView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(synthView.snp.bottom)
+        }
+        
     }
     
 }

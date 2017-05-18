@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class BlipView: UIButton {
+class BlipButton: UIButton {
     
     var blip: Blip!
     
@@ -27,24 +27,17 @@ class BlipView: UIButton {
         
         blip = Blip(column: column, row: row)
         
-//        self.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-        
         if blip.isActive {
             backgroundColor = UIColor.blipActive
         } else {
             backgroundColor = UIColor.blipInactive
         }
         
-//        self.backgroundColor = UIColor().generateRandomColor()
-
+        layer.cornerRadius = 5
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.cyan.cgColor
         
     }
     
-    
-}
-
-extension BlipView {
-    
-
     
 }

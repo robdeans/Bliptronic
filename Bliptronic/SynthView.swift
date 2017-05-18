@@ -12,10 +12,8 @@ import SnapKit
 import AudioKit
 
 class SynthView: UIView {
-    
-    
-    let conductor = Conductor()
-    
+
+    let conductor = Conductor.sharedInstance
     
     var columnStackView1 = UIStackView()
     var columnStackView2 = UIStackView()
@@ -37,10 +35,6 @@ class SynthView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    convenience init() {
-        self.init(frame: CGRect.zero)
         configure()
         constrain()
     }
@@ -53,31 +47,28 @@ class SynthView: UIView {
         
         let stackviewArray = [columnStackView1, columnStackView2, columnStackView3, columnStackView4, columnStackView5, columnStackView6, columnStackView7, columnStackView8]
         
-        var columnCounter = 0
-        for column in stackviewArray {
-            column.axis = .vertical
-            column.distribution = .fillEqually
-            column.spacing = blipSpacing
+        for (column, columnStackView) in stackviewArray.enumerated() {
+            columnStackView.axis = .vertical
+            columnStackView.distribution = .fillEqually
+            columnStackView.spacing = blipSpacing
             
             
             var rowCounter = 8
             for _ in 0...7 {
                 
-                let blipView = BlipView(column: columnCounter, row: rowCounter)
+                let blipButton = BlipButton(column: column, row: rowCounter)
                 
-                blipView.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-                //                conductor.mixer.connect(blipView.blip.oscillator)
+                blipButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
                 
-                column.addArrangedSubview(blipView)
+                columnStackView.addArrangedSubview(blipButton)
                 
                 rowCounter -= 1
             }
             
-            horizontalStackView.addArrangedSubview(column)
-            column.snp.makeConstraints {
+            horizontalStackView.addArrangedSubview(columnStackView)
+            columnStackView.snp.makeConstraints {
                 $0.height.equalToSuperview()
             }
-            columnCounter += 1
         }
         
     }
@@ -86,8 +77,9 @@ class SynthView: UIView {
         
         addSubview(horizontalStackView)
         horizontalStackView.snp.makeConstraints {
-            $0.centerX.centerY.height.equalToSuperview()
+            $0.centerX.centerY.equalToSuperview()
             $0.width.equalToSuperview().offset(blipSpacing * -2)
+            $0.height.equalToSuperview().offset(blipSpacing * -2)
         }
         
     }
@@ -97,7 +89,7 @@ class SynthView: UIView {
 extension SynthView {
     
     func isTapped(_ sender: UIButton) {
-        if let sender = sender as? BlipView {
+        if let sender = sender as? BlipButton {
             sender.blip.isActive = !sender.blip.isActive
             
             if sender.blip.isActive {

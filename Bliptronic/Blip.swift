@@ -15,15 +15,15 @@ struct Blip {
     var column: Int
     var row: Int
     
-    let sawtooth = AKTable(.sawtooth, count: 4096)
-    var oscillator: AKOscillator!
+//    let sawtooth = AKTable(.sawtooth, count: 4096)
+//    var oscillator: AKOscillator!
     
     
     init(column: Int, row: Int) {
         isActive = false
         self.row = row
         self.column = column
-        
+        /*
         oscillator = AKOscillator(waveform: sawtooth)
         oscillator.rampTime = 0.2
         oscillator.amplitude = 0.05
@@ -49,18 +49,18 @@ struct Blip {
             print("not a note")
             
         }
+        */
     }
 
     
     func noteOn() {
-        print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was activated!")
-        
+        print("Blip in column \(column) row \(row) was activated!")
 //        oscillator.amplitude = 0.05
 //        oscillator.play()
     }
     
     func noteOff() {
-        print("Blip in column \(column) row \(row) with frequncy \(oscillator.frequency) was de-activated!")
+        print("Blip in column \(column) row \(row) was de-activated!")
         
 //        oscillator.amplitude = 0
 //        oscillator.stop()

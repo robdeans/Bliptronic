@@ -11,6 +11,8 @@ import AudioKit
 
 class Conductor {
     
+    static let sharedInstance = Conductor()
+    
     let midi = AKMIDI()
     
     var synthesizer = AKOscillatorBank()
@@ -29,8 +31,6 @@ class Conductor {
     }
     
     init() {
-        
-        
         midiNode = AKMIDINode(node: synthesizer)
         midiNode.enableMIDI(midi.client, name: "synth midi in")
         
@@ -50,8 +50,6 @@ class Conductor {
     }
     
     func setupTrack() {
-        
-        
         for number in 0...7 {
             let _ = sequence.newTrack()
             sequence.setLength(sequenceLength)
@@ -61,7 +59,6 @@ class Conductor {
         sequence.enableLooping()
         sequence.setTempo(110)
         sequence.play()
-        
     }
     
     func generateNote(for blip: Blip) {
