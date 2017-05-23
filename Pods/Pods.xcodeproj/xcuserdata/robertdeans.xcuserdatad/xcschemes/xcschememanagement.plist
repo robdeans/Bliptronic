@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MaterialKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pastel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bliptronic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5FC8D58CE9FA03D6AC866D95CE85F1AE</key>
+		<key>01D2443FE1BDF95C86584E3102AD2F0A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D99DB329C9DEA4537724D42C309A7DD</key>
+		<key>8E1D092BF86FB8C0ABE055E421219B71</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>94C6A4FFAA91064FD04093A9704FB774</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CAC23CBB7E9A00F71D065952F72A43E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

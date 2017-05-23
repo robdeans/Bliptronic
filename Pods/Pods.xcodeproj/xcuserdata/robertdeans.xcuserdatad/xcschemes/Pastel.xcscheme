@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '01D2443FE1BDF95C86584E3102AD2F0A'
-               BlueprintName = 'SnapKit'
+               BlueprintIdentifier = '8E1D092BF86FB8C0ABE055E421219B71'
+               BlueprintName = 'Pastel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SnapKit.framework'>
+               BuildableName = 'Pastel.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
