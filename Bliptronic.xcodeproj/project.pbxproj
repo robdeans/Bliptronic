@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */; };
+		E80713091ED4AED9007BA114 /* InstrumentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */; };
 		E86A5D081ECD0AA600DCC783 /* KnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D071ECD0AA600DCC783 /* KnobView.swift */; };
 		E86A5D111ECE297500DCC783 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D091ECE297500DCC783 /* Knob.swift */; };
 		E86A5D121ECE297500DCC783 /* Knob+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */; };
@@ -60,6 +61,7 @@
 		3F4F9B6ED9190661618F8FDB /* Pods-Bliptronic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.release.xcconfig"; sourceTree = "<group>"; };
 		B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliptronic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentScrollView.swift; sourceTree = "<group>"; };
 		E86A5D071ECD0AA600DCC783 /* KnobView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobView.swift; sourceTree = "<group>"; };
 		E86A5D091ECE297500DCC783 /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Knob+Touches.swift"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				E8E44A471EC956CF005F787A /* SynthView.swift */,
 				E86A5D071ECD0AA600DCC783 /* KnobView.swift */,
 				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
+				E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				E86A5D201ECE29E200DCC783 /* SMAlphaImageSegment.swift in Sources */,
 				E8DFC7121ECB915400A6360C /* OGConductor.swift in Sources */,
 				E86A5D131ECE297500DCC783 /* KnobLarge.swift in Sources */,
+				E80713091ED4AED9007BA114 /* InstrumentScrollView.swift in Sources */,
 				E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */,
 				E86A5D181ECE297500DCC783 /* WaveformSegmentedView.swift in Sources */,
 				E86A5D151ECE297500DCC783 /* KnobSmall.swift in Sources */,

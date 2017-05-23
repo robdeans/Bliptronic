@@ -12,7 +12,7 @@ import SnapKit
 
 class MainScreenView: UIView {
     
-    var instrumentScrollView: UIScrollView!
+    var instrumentScrollView: InstrumentScrollView!
     var synthView: SynthView!
     var knobView: KnobView!
     
@@ -34,9 +34,7 @@ class MainScreenView: UIView {
     func configure() {
         synthView = SynthView()
         knobView = KnobView()
-        instrumentScrollView = UIScrollView()
-        instrumentScrollView.backgroundColor = UIColor.lightGray
-        instrumentScrollView.layer.cornerRadius = 5
+        instrumentScrollView = InstrumentScrollView()
     }
     
     func constrain() {
