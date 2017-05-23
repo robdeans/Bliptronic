@@ -14,8 +14,8 @@ class MainViewController: UIViewController {
     
     var mainScreenView: MainScreenView!
     
-    var playButton: UIButton!
-    var stopButton: UIButton!
+    var playButton: UIButton!    
+    var isPlaying = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,22 +29,16 @@ class MainViewController: UIViewController {
         
         
         playButton = UIButton()
-        playButton.setTitle("▶️", for: .normal)
-        playButton.addTarget(self, action: #selector(play), for: .touchUpInside)
-        
-        stopButton = UIButton()
-        stopButton.setTitle("⏹", for: .normal)
-        stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        playButton.setTitle("⏯", for: .normal)
+        playButton.addTarget(self, action: #selector(playOrPause), for: .touchUpInside)
         
         view.addSubview(playButton)
         playButton.snp.makeConstraints {
             $0.trailing.bottom.equalToSuperview()
         }
         
-        view.addSubview(stopButton)
-        stopButton.snp.makeConstraints {
-            $0.leading.bottom.equalToSuperview()
-        }
+
+        
         
         let pastelView = PastelView(frame: view.bounds)
         
@@ -75,13 +69,14 @@ class MainViewController: UIViewController {
     }
     
     
-    func play() {
-        mainScreenView.synthView.conductor.sequence.play()
+    func playOrPause() {
+        if isPlaying {
+            mainScreenView.synthView.conductor.sequence.stop()
+        } else {
+            mainScreenView.synthView.conductor.sequence.play()
+        }
     }
     
-    func stop() {
-        mainScreenView.synthView.conductor.sequence.stop()
-    }
     
 }
 

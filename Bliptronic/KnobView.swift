@@ -21,6 +21,17 @@ class KnobView: UIView {
     
     var cutoffKnob: KnobSmall!
     var resonanceKnob: KnobSmall!
+    var tempoUp: UIButton!
+    var tempoDown: UIButton!
+    var tempoTextView = UITextView()
+//    {
+//        didSet {
+//            if let tempo = Double(tempoTextView.text) {
+//                conductor.currentTempo = tempo
+//            }
+//        }
+//    }
+    var currentTempo: Double = 110
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +54,24 @@ class KnobView: UIView {
         resonanceKnob.maximum = 10
         resonanceKnob.value = 5
         resonanceKnob.backgroundColor = UIColor.clear
+        
+        tempoUp = UIButton()
+        tempoUp.setTitle("🔼", for: .normal)
+        tempoUp.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
+        
+        tempoDown = UIButton()
+        tempoDown.setTitle("🔽", for: .normal)
+        tempoDown.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
+        
+        currentTempo = conductor.currentTempo
+        
+        tempoTextView.text = "\(currentTempo)"
+        tempoTextView.font = UIFont(name: "Futura-Medium", size: 20)
+        tempoTextView.textColor = UIColor.white
+        tempoTextView.isEditable = false
+        tempoTextView.textAlignment = .right
+        tempoTextView.backgroundColor = UIColor.clear
+        
     
     }
 
@@ -59,6 +88,47 @@ class KnobView: UIView {
             $0.leading.equalTo(cutoffKnob.snp.trailing)
             $0.width.height.equalTo(65)
         }
+        
+        addSubview(tempoUp)
+        tempoUp.snp.makeConstraints {
+            $0.top.trailing.equalToSuperview()
+        }
+        
+        addSubview(tempoTextView)
+        tempoTextView.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.height.equalToSuperview().dividedBy(5)
+            $0.width.equalTo(tempoTextView.snp.height).multipliedBy(2)
+            $0.top.equalTo(tempoUp.snp.bottom)
+        }
+        
+        addSubview(tempoDown)
+        tempoDown.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.top.equalTo(tempoTextView.snp.bottom)
+        }
+        
+        
+    }
+    
+    func tempoButtonTapped(_ sender: UIButton) {
+        if sender.titleLabel?.text == "🔼" {
+            currentTempo += 5
+            conductor.currentTempo = currentTempo
+            tempoTextView.text = "\(currentTempo)"
+
+        } else {
+            currentTempo -= 5
+            conductor.currentTempo = currentTempo
+            tempoTextView.text = "\(currentTempo)"
+
+        }
+        
+        
+    }
+    
+    func updateTempo(value: Double) {
+        conductor.currentTempo = value
     }
     
 }

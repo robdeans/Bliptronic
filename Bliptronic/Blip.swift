@@ -54,14 +54,13 @@ struct Blip {
 
     
     func noteOn() {
-        print("Blip in column \(column) row \(row) was activated!")
+//        print("Blip in column \(column) row \(row) was activated!")
 //        oscillator.amplitude = 0.05
 //        oscillator.play()
     }
     
     func noteOff() {
-        print("Blip in column \(column) row \(row) was de-activated!")
-        
+//        print("Blip in column \(column) row \(row) was de-activated!")
 //        oscillator.amplitude = 0
 //        oscillator.stop()
     }

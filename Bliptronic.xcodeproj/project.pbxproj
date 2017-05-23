@@ -150,7 +150,6 @@
 			children = (
 				E8DFC7091ECB76C700A6360C /* Coordinate.swift */,
 				E8E44A411EC956B2005F787A /* Blip.swift */,
-				E8A5F3331ECCDF0900C5310D /* Conductor.swift */,
 				E8DFC7111ECB915400A6360C /* OGConductor.swift */,
 				E8DFC7131ECB916A00A6360C /* Sequence.swift */,
 			);
@@ -194,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E449FB1EC9561B005F787A /* AppDelegate.swift */,
+				E8A5F3331ECCDF0900C5310D /* Conductor.swift */,
 				E8DFC70B1ECB789F00A6360C /* Models */,
 				E8DFC70C1ECB78AA00A6360C /* Views */,
 				E8E44A4B1EC956EA005F787A /* MainViewController.swift */,
