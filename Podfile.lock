@@ -1,18 +1,15 @@
 PODS:
-  - MaterialKit (0.4)
   - Pastel (0.3.0)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
-  - MaterialKit
   - Pastel
   - SnapKit
 
 SPEC CHECKSUMS:
-  MaterialKit: 2e5267bcf410b82793f2b92d2111f8ae4ed2c3f2
   Pastel: 738740c84f2b15bbcd96ebe99c4e6c2f5dd42262
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 640037152ea608f6d998134396e38593872e29be
+PODFILE CHECKSUM: 61a797a310dbf1832b0768651ed332afdf315a5d
 
 COCOAPODS: 1.2.0

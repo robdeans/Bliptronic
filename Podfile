@@ -9,7 +9,7 @@ target 'Bliptronic' do
   # Pods for Bliptronic
   pod 'SnapKit'
   pod 'Pastel'
-  pod 'MaterialKit'
+  # pod 'MaterialKit'
 
 
 

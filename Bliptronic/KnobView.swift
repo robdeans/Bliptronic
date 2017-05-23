@@ -37,10 +37,12 @@ class KnobView: UIView {
         cutoffKnob = KnobSmall()
         cutoffKnob.maximum = 10
         cutoffKnob.value = 5
+        cutoffKnob.backgroundColor = UIColor.clear
         
         resonanceKnob = KnobSmall()
         resonanceKnob.maximum = 10
         resonanceKnob.value = 5
+        resonanceKnob.backgroundColor = UIColor.clear
     
     }
 
@@ -48,14 +50,14 @@ class KnobView: UIView {
         addSubview(cutoffKnob)
         cutoffKnob.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(65)
         }
         
         addSubview(resonanceKnob)
         resonanceKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(cutoffKnob.snp.trailing)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(65)
         }
     }
     

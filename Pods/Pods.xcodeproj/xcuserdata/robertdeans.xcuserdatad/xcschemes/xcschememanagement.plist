@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MaterialKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pastel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +22,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01D2443FE1BDF95C86584E3102AD2F0A</key>
+		<key>08AC75A7A8F29B77A88251EB0E57963B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94C6A4FFAA91064FD04093A9704FB774</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9CAC23CBB7E9A00F71D065952F72A43E</key>
+		<key>F4D4E72E16D30FBBDB616C288799A10C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
