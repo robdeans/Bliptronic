@@ -18,6 +18,8 @@ class Conductor {
     var synthesizer = AKOscillatorBank()
     var midiNode: AKMIDINode!
     
+    var filter: AKMoogLadder!
+    
     var mixer = AKMixer()
     var compressor: AKCompressor!
     
@@ -34,6 +36,7 @@ class Conductor {
         midiNode = AKMIDINode(node: synthesizer)
         midiNode.enableMIDI(midi.client, name: "synth midi in")
         
+        filter = AKMoogLadder(midiNode)
         
         mixer.connect(synthesizer)
         

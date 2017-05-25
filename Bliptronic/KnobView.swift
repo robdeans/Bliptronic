@@ -24,13 +24,13 @@ class KnobView: UIView {
     var tempoUp: UIButton!
     var tempoDown: UIButton!
     var tempoTextView = UITextView()
-//    {
-//        didSet {
-//            if let tempo = Double(tempoTextView.text) {
-//                conductor.currentTempo = tempo
-//            }
-//        }
-//    }
+    //    {
+    //        didSet {
+    //            if let tempo = Double(tempoTextView.text) {
+    //                conductor.currentTempo = tempo
+    //            }
+    //        }
+    //    }
     var currentTempo: Double = 110
     
     // MARK: Initialization
@@ -46,8 +46,10 @@ class KnobView: UIView {
     
     func configure() {
         cutoffKnob = KnobSmall()
-        cutoffKnob.maximum = 10
-        cutoffKnob.value = 5
+        cutoffKnob.maximum = 1.0
+        cutoffKnob.minimum = 0
+        cutoffKnob.value = 1.0
+        cutoffKnob.delegate = self
         cutoffKnob.backgroundColor = UIColor.clear
         
         resonanceKnob = KnobSmall()
@@ -72,9 +74,9 @@ class KnobView: UIView {
         tempoTextView.textAlignment = .right
         tempoTextView.backgroundColor = UIColor.clear
         
-    
+        
     }
-
+    
     func constrain() {
         addSubview(cutoffKnob)
         cutoffKnob.snp.makeConstraints {
@@ -116,12 +118,12 @@ class KnobView: UIView {
             currentTempo += 5
             conductor.currentTempo = currentTempo
             tempoTextView.text = "\(currentTempo)"
-
+            
         } else {
             currentTempo -= 5
             conductor.currentTempo = currentTempo
             tempoTextView.text = "\(currentTempo)"
-
+            
         }
         
         
@@ -131,5 +133,30 @@ class KnobView: UIView {
         conductor.currentTempo = value
     }
     
+}
+
+extension KnobView: KnobSmallDelegate {
+    
+    func updateKnobValue(_ value: Double, tag: Int) {
+        let cutOffFrequency = cutoffFreqFromValue(value)
+        conductor.filter.cutoffFrequency = cutOffFrequency
+        print("conductor filter = \(conductor.filter.cutoffFrequency)")
+    }
+    
+    func cutoffFreqFromValue(_ value: Double) -> Double {
+        // Logarithmic scale: knobvalue to frequency
+        let scaledValue = Double.scaleRangeLog(value, rangeMin: 30, rangeMax: 7_000)
+        return scaledValue * 4
+    }
+    
+}
+
+extension Double {
+    
+    // Logarithmically scale 0.0 to 1.0 to any range
+    public static func scaleRangeLog(_ value: Double, rangeMin: Double, rangeMax: Double) -> Double {
+        let scale = (log(rangeMax) - log(rangeMin))
+        return exp(log(rangeMin) + (scale * value))
+    }
 }
 
