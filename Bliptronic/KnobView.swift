@@ -34,7 +34,7 @@ class KnobView: UIView {
     //            }
     //        }
     //    }
-    var currentTempo: Double = 110
+    var currentTempo: Double = 220
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -81,7 +81,7 @@ class KnobView: UIView {
         
         currentTempo = conductor.currentTempo
         
-        tempoTextView.text = "\(currentTempo)"
+        tempoTextView.text = "\(currentTempo / 2)"
         tempoTextView.font = UIFont(name: "Futura-Medium", size: 20)
         tempoTextView.textColor = UIColor.white
         tempoTextView.isEditable = false
@@ -145,12 +145,12 @@ class KnobView: UIView {
         if sender.titleLabel?.text == "🔼" {
             currentTempo += 5
             conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo)"
+            tempoTextView.text = "\(currentTempo / 2)"
             
         } else {
             currentTempo -= 5
             conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo)"
+            tempoTextView.text = "\(currentTempo / 2)"
             
         }
         

@@ -15,7 +15,7 @@ class Conductor {
     
     let midi = AKMIDI()
     
-    var synthesizer = AKOscillatorBank()
+    var synthesizer = AKOscillatorBank(waveform: AKTable(.sawtooth))
     var midiNode: AKMIDINode!
     
     var filter: AKMoogLadder!
@@ -26,7 +26,7 @@ class Conductor {
     var sequence = AKSequencer()
     let sequenceLength = AKDuration(beats: 8.0)
     
-    var currentTempo = 110.0 {
+    var currentTempo = 220.0 {
         didSet {
             sequence.setTempo(currentTempo)
         }
@@ -60,7 +60,7 @@ class Conductor {
         }
         
         sequence.enableLooping()
-        sequence.setTempo(110)
+        sequence.setTempo(220)
         sequence.play()
     }
     
@@ -91,8 +91,8 @@ class Conductor {
         }
         
         // sequence.tracks [for this instrument]. add(this note at this velocity, position (column/part of the measure), and duraction)
-        // TODO: Adjust this for multiple instruments/tracks
-        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        // TODO: understand this...
+        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
@@ -119,6 +119,7 @@ class Conductor {
             break
         }
         
+        //TODO: Understand this...
         sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
 }

@@ -149,7 +149,6 @@
 		E8DFC70B1ECB789F00A6360C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E8A5F3331ECCDF0900C5310D /* Conductor.swift */,
 				E8E44A411EC956B2005F787A /* Blip.swift */,
 			);
 			name = Models;
@@ -192,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E449FB1EC9561B005F787A /* AppDelegate.swift */,
+				E8A5F3331ECCDF0900C5310D /* Conductor.swift */,
 				E8DFC70B1ECB789F00A6360C /* Models */,
 				E8DFC70C1ECB78AA00A6360C /* Views */,
 				E807130D1ED6667E007BA114 /* View Controllers */,
