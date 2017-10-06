@@ -1,4 +1,4 @@
-//
+ //
 //  Conductor.swift
 //  Bliptronic
 //
@@ -66,7 +66,7 @@ class Conductor {
     
     func generateNote(for blip: Blip) {
         let position = AKDuration(beats: Double(blip.column))
-        let duration = AKDuration(seconds: 0.4)
+        let duration = AKDuration(seconds: 0.74)
         var note: UInt8 = 0
         
         switch blip.row {
@@ -90,7 +90,9 @@ class Conductor {
             break
         }
         
-        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        // sequence.tracks [for this instrument]. add(this note at this velocity, position (column/part of the measure), and duraction)
+        // TODO: Adjust this for multiple instruments/tracks
+        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
