@@ -21,6 +21,9 @@ class KnobView: UIView {
     
     var cutoffKnob: KnobSmall!
     var resonanceKnob: KnobSmall!
+    var randomKnob1: KnobSmall!
+    var randomKnob2: KnobSmall!
+    
     var tempoUp: UIButton!
     var tempoDown: UIButton!
     var tempoTextView = UITextView()
@@ -48,7 +51,7 @@ class KnobView: UIView {
         cutoffKnob = KnobSmall()
         cutoffKnob.maximum = 1.0
         cutoffKnob.minimum = 0
-        cutoffKnob.value = 1.0
+        cutoffKnob.value = 0.5
         cutoffKnob.delegate = self
         cutoffKnob.backgroundColor = UIColor.clear
         
@@ -56,6 +59,17 @@ class KnobView: UIView {
         resonanceKnob.maximum = 10
         resonanceKnob.value = 5
         resonanceKnob.backgroundColor = UIColor.clear
+        
+        randomKnob1 = KnobSmall()
+        randomKnob1.maximum = 10
+        randomKnob1.value = 5
+        randomKnob1.backgroundColor = UIColor.clear
+        
+        randomKnob2 = KnobSmall()
+        randomKnob2.maximum = 10
+        randomKnob2.value = 5
+        randomKnob2.backgroundColor = UIColor.clear
+
         
         tempoUp = UIButton()
         tempoUp.setTitle("🔼", for: .normal)
@@ -88,6 +102,20 @@ class KnobView: UIView {
         resonanceKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(cutoffKnob.snp.trailing)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(randomKnob1)
+        randomKnob1.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(resonanceKnob.snp.trailing)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(randomKnob2)
+        randomKnob2.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(randomKnob1.snp.trailing)
             $0.width.height.equalTo(65)
         }
         
