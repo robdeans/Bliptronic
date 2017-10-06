@@ -20,16 +20,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainScreenView = MainScreenView()
+        setupUI()
+
         
+    }
+    
+    
+    func setupUI() {
+        // Add Mainscreen
+        mainScreenView = MainScreenView()
         view.addSubview(mainScreenView)
         mainScreenView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        
+        // Add buttons and functionality
         playButton = UIButton()
-        playButton.setTitle("⏯", for: .normal)
+        playButton.setTitle("⏹", for: .normal)
         playButton.addTarget(self, action: #selector(playOrPause), for: .touchUpInside)
         
         view.addSubview(playButton)
@@ -37,9 +44,8 @@ class MainViewController: UIViewController {
             $0.trailing.bottom.equalToSuperview()
         }
         
-
         
-        
+        // Add Background
         let pastelView = PastelView(frame: view.bounds)
         
         // Custom Direction
@@ -50,31 +56,30 @@ class MainViewController: UIViewController {
         pastelView.animationDuration = 3.0
         
         // Custom Color
-        pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
-                              UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+        pastelView.setColors([//UIColor.pastelMagenta,
+                              //UIColor.pastelPink,
                               UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
-                              UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
-                              UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                              UIColor.pastelBlue,
+                              UIColor.pastelLightBlue,
                               UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
-                              UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+                              UIColor.pastelTeal])
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+}
+
+extension MainViewController {
     
     func playOrPause() {
         if isPlaying {
             mainScreenView.synthView.conductor.sequence.stop()
+            playButton.setTitle("⏯", for: .normal)
         } else {
             mainScreenView.synthView.conductor.sequence.play()
+            playButton.setTitle("⏹", for: .normal)
         }
+        isPlaying = !isPlaying
     }
     
     
