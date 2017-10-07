@@ -1,22 +1,22 @@
-//
-//  Conductor.swift
-//  Bliptronic
-//
-//  Created by Robert Deans on 5/17/17.
-//  Copyright © 2017 Robert Deans. All rights reserved.
-//
-
-import Foundation
-import AudioKit
-
-class Conductor {
+ //
+ //  Conductor.swift
+ //  Bliptronic
+ //
+ //  Created by Robert Deans on 5/17/17.
+ //  Copyright © 2017 Robert Deans. All rights reserved.
+ //
+ 
+ import AudioKit
+ 
+ class Conductor {
     
     static let sharedInstance = Conductor()
     
     let midi = AKMIDI()
     
-    var synthesizer = AKOscillatorBank()
+    var synthesizer = AKFMOscillatorBank()
     var midiNode: AKMIDINode!
+    var reverb: AKReverb2!
     
     var mixer = AKMixer()
     var compressor: AKCompressor!
@@ -24,18 +24,26 @@ class Conductor {
     var sequence = AKSequencer()
     let sequenceLength = AKDuration(beats: 8.0)
     
-    var currentTempo = 110.0 {
+    var currentTempo = 220.0 {
         didSet {
             sequence.setTempo(currentTempo)
         }
     }
     
     init() {
+        synthesizer.modulatingMultiplier = 3
+        synthesizer.modulationIndex = 0.3
+        
         midiNode = AKMIDINode(node: synthesizer)
         midiNode.enableMIDI(midi.client, name: "synth midi in")
         
+        reverb = AKReverb2(midiNode)
+        reverb.dryWetMix = 0.5
+        reverb.decayTimeAt0Hz = 7
+        reverb.decayTimeAtNyquist = 11
+        reverb.randomizeReflections = 600
+        reverb.gain = 1
         
-        mixer.connect(synthesizer)
         
         compressor = AKCompressor(mixer)
         compressor.headRoom = 0.10
@@ -44,26 +52,27 @@ class Conductor {
         compressor.attackTime = 0.01
         compressor.releaseTime = 0.3
         
+        mixer.connect(reverb)
+        
         setupTrack()
         
         AudioKit.output = compressor
+        AudioKit.start()
     }
     
     func setupTrack() {
-        for number in 0...7 {
-            let _ = sequence.newTrack()
-            sequence.setLength(sequenceLength)
-            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
-        }
+        let _ = sequence.newTrack()
+        sequence.setLength(sequenceLength)
+        sequence.tracks[0].setMIDIOutput(midiNode.midiIn)
         
         sequence.enableLooping()
-        sequence.setTempo(110)
+        sequence.setTempo(220)
         sequence.play()
     }
     
     func generateNote(for blip: Blip) {
         let position = AKDuration(beats: Double(blip.column))
-        let duration = AKDuration(seconds: 0.4)
+        let duration = AKDuration(seconds: 0.74)
         var note: UInt8 = 0
         
         switch blip.row {
@@ -87,7 +96,9 @@ class Conductor {
             break
         }
         
-        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        // sequence.tracks [for this instrument]. add(this note at this velocity, position (column/part of the measure), and duraction)
+        // TODO: understand this...
+        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
@@ -114,6 +125,7 @@ class Conductor {
             break
         }
         
-        sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
+        //TODO: Understand this...
+        sequence.tracks[0].clearNote(MIDINoteNumber(note))
     }
-}
+ }

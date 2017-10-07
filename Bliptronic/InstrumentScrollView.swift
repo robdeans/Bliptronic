@@ -75,7 +75,7 @@ class InstrumentScrollView: UIView {
     }
     
     func selectInstrument(_ sender: UIButton) {
-        print("\(sender.titleLabel?.text) selected")
+        print("\(sender.titleLabel?.text ?? "nothing") selected")
     }
     
 }

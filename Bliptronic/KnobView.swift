@@ -21,17 +21,20 @@ class KnobView: UIView {
     
     var cutoffKnob: KnobSmall!
     var resonanceKnob: KnobSmall!
+    var randomKnob1: KnobSmall!
+    var randomKnob2: KnobSmall!
+    
     var tempoUp: UIButton!
     var tempoDown: UIButton!
     var tempoTextView = UITextView()
-//    {
-//        didSet {
-//            if let tempo = Double(tempoTextView.text) {
-//                conductor.currentTempo = tempo
-//            }
-//        }
-//    }
-    var currentTempo: Double = 110
+    //    {
+    //        didSet {
+    //            if let tempo = Double(tempoTextView.text) {
+    //                conductor.currentTempo = tempo
+    //            }
+    //        }
+    //    }
+    var currentTempo: Double = 220
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -46,14 +49,27 @@ class KnobView: UIView {
     
     func configure() {
         cutoffKnob = KnobSmall()
-        cutoffKnob.maximum = 10
-        cutoffKnob.value = 5
+        cutoffKnob.maximum = 1.0
+        cutoffKnob.minimum = 0
+        cutoffKnob.value = 0.5
+        cutoffKnob.delegate = self
         cutoffKnob.backgroundColor = UIColor.clear
         
         resonanceKnob = KnobSmall()
         resonanceKnob.maximum = 10
         resonanceKnob.value = 5
         resonanceKnob.backgroundColor = UIColor.clear
+        
+        randomKnob1 = KnobSmall()
+        randomKnob1.maximum = 10
+        randomKnob1.value = 5
+        randomKnob1.backgroundColor = UIColor.clear
+        
+        randomKnob2 = KnobSmall()
+        randomKnob2.maximum = 10
+        randomKnob2.value = 5
+        randomKnob2.backgroundColor = UIColor.clear
+
         
         tempoUp = UIButton()
         tempoUp.setTitle("🔼", for: .normal)
@@ -65,16 +81,16 @@ class KnobView: UIView {
         
         currentTempo = conductor.currentTempo
         
-        tempoTextView.text = "\(currentTempo)"
+        tempoTextView.text = "\(currentTempo / 2)"
         tempoTextView.font = UIFont(name: "Futura-Medium", size: 20)
         tempoTextView.textColor = UIColor.white
         tempoTextView.isEditable = false
         tempoTextView.textAlignment = .right
         tempoTextView.backgroundColor = UIColor.clear
         
-    
+        
     }
-
+    
     func constrain() {
         addSubview(cutoffKnob)
         cutoffKnob.snp.makeConstraints {
@@ -86,6 +102,20 @@ class KnobView: UIView {
         resonanceKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(cutoffKnob.snp.trailing)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(randomKnob1)
+        randomKnob1.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(resonanceKnob.snp.trailing)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(randomKnob2)
+        randomKnob2.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(randomKnob1.snp.trailing)
             $0.width.height.equalTo(65)
         }
         
@@ -115,13 +145,13 @@ class KnobView: UIView {
         if sender.titleLabel?.text == "🔼" {
             currentTempo += 5
             conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo)"
-
+            tempoTextView.text = "\(currentTempo / 2)"
+            
         } else {
             currentTempo -= 5
             conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo)"
-
+            tempoTextView.text = "\(currentTempo / 2)"
+            
         }
         
         
@@ -131,5 +161,32 @@ class KnobView: UIView {
         conductor.currentTempo = value
     }
     
+}
+
+extension KnobView: KnobSmallDelegate {
+    
+    func updateKnobValue(_ value: Double, tag: Int) {
+        let cutOffFrequency = cutoffFreqFromValue(value)
+        /*
+        conductor.filter.cutoffFrequency = cutOffFrequency
+        print("conductor filter = \(conductor.filter.cutoffFrequency)")
+ */
+    }
+    
+    func cutoffFreqFromValue(_ value: Double) -> Double {
+        // Logarithmic scale: knobvalue to frequency
+        let scaledValue = Double.scaleRangeLog(value, rangeMin: 30, rangeMax: 7_000)
+        return scaledValue * 4
+    }
+    
+}
+
+extension Double {
+    
+    // Logarithmically scale 0.0 to 1.0 to any range
+    public static func scaleRangeLog(_ value: Double, rangeMin: Double, rangeMax: Double) -> Double {
+        let scale = (log(rangeMax) - log(rangeMin))
+        return exp(log(rangeMin) + (scale * value))
+    }
 }
 

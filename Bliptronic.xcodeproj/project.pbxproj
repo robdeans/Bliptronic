@@ -24,11 +24,7 @@
 		E86A5D231ECE29E200DCC783 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D1E1ECE29E200DCC783 /* SMSegment.swift */; };
 		E86A5D241ECE29E200DCC783 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D1F1ECE29E200DCC783 /* SMSegmentView.swift */; };
 		E8A5F3341ECCDF0900C5310D /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5F3331ECCDF0900C5310D /* Conductor.swift */; };
-		E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC7091ECB76C700A6360C /* Coordinate.swift */; };
 		E8DFC70E1ECB7DBD00A6360C /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */; };
-		E8DFC7101ECB81CC00A6360C /* PitchFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */; };
-		E8DFC7121ECB915400A6360C /* OGConductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC7111ECB915400A6360C /* OGConductor.swift */; };
-		E8DFC7141ECB916A00A6360C /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC7131ECB916A00A6360C /* Sequence.swift */; };
 		E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E449FB1EC9561B005F787A /* AppDelegate.swift */; };
 		E8E44A011EC9561B005F787A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8E449FF1EC9561B005F787A /* Main.storyboard */; };
 		E8E44A031EC9561B005F787A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8E44A021EC9561B005F787A /* Assets.xcassets */; };
@@ -77,11 +73,7 @@
 		E86A5D1E1ECE29E200DCC783 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		E86A5D1F1ECE29E200DCC783 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		E8A5F3331ECCDF0900C5310D /* Conductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
-		E8DFC7091ECB76C700A6360C /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
-		E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchFrequency.swift; sourceTree = "<group>"; };
-		E8DFC7111ECB915400A6360C /* OGConductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGConductor.swift; sourceTree = "<group>"; };
-		E8DFC7131ECB916A00A6360C /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		E8E449F81EC9561B005F787A /* Bliptronic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bliptronic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E449FB1EC9561B005F787A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8E44A001EC9561B005F787A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +110,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E807130D1ED6667E007BA114 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E8E44A4B1EC956EA005F787A /* MainViewController.swift */,
+				E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		E86A5D191ECE297F00DCC783 /* CustomSynthControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,10 +149,7 @@
 		E8DFC70B1ECB789F00A6360C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E8DFC7091ECB76C700A6360C /* Coordinate.swift */,
 				E8E44A411EC956B2005F787A /* Blip.swift */,
-				E8DFC7111ECB915400A6360C /* OGConductor.swift */,
-				E8DFC7131ECB916A00A6360C /* Sequence.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -196,14 +194,12 @@
 				E8A5F3331ECCDF0900C5310D /* Conductor.swift */,
 				E8DFC70B1ECB789F00A6360C /* Models */,
 				E8DFC70C1ECB78AA00A6360C /* Views */,
-				E8E44A4B1EC956EA005F787A /* MainViewController.swift */,
-				E8E449FF1EC9561B005F787A /* Main.storyboard */,
+				E807130D1ED6667E007BA114 /* View Controllers */,
 				E8E44A4D1EC956F5005F787A /* Colors.swift */,
 				E8E44A021EC9561B005F787A /* Assets.xcassets */,
+				E8E449FF1EC9561B005F787A /* Main.storyboard */,
 				E8E44A041EC9561B005F787A /* LaunchScreen.storyboard */,
 				E8E44A071EC9561B005F787A /* Info.plist */,
-				E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */,
-				E8DFC70F1ECB81CC00A6360C /* PitchFrequency.swift */,
 			);
 			path = Bliptronic;
 			sourceTree = "<group>";
@@ -342,7 +338,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8DFC7101ECB81CC00A6360C /* PitchFrequency.swift in Sources */,
 				E8E44A4E1EC956F5005F787A /* Colors.swift in Sources */,
 				E8E44A461EC956CB005F787A /* BlipButton.swift in Sources */,
 				E8E44A4A1EC956D4005F787A /* MainScreenView.swift in Sources */,
@@ -350,7 +345,6 @@
 				E86A5D211ECE29E200DCC783 /* SMBasicSegment.swift in Sources */,
 				E8E44A481EC956CF005F787A /* SynthView.swift in Sources */,
 				E86A5D081ECD0AA600DCC783 /* KnobView.swift in Sources */,
-				E8DFC7141ECB916A00A6360C /* Sequence.swift in Sources */,
 				E86A5D231ECE29E200DCC783 /* SMSegment.swift in Sources */,
 				E86A5D111ECE297500DCC783 /* Knob.swift in Sources */,
 				E86A5D171ECE297500DCC783 /* VerticalSlider.swift in Sources */,
@@ -360,10 +354,8 @@
 				E86A5D141ECE297500DCC783 /* KnobMedium.swift in Sources */,
 				E86A5D161ECE297500DCC783 /* RoundedButton.swift in Sources */,
 				E86A5D201ECE29E200DCC783 /* SMAlphaImageSegment.swift in Sources */,
-				E8DFC7121ECB915400A6360C /* OGConductor.swift in Sources */,
 				E86A5D131ECE297500DCC783 /* KnobLarge.swift in Sources */,
 				E80713091ED4AED9007BA114 /* InstrumentScrollView.swift in Sources */,
-				E8DFC70A1ECB76C700A6360C /* Coordinate.swift in Sources */,
 				E86A5D181ECE297500DCC783 /* WaveformSegmentedView.swift in Sources */,
 				E86A5D151ECE297500DCC783 /* KnobSmall.swift in Sources */,
 				E8E44A421EC956B2005F787A /* Blip.swift in Sources */,
