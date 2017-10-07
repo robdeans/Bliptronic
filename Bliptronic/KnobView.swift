@@ -167,8 +167,10 @@ extension KnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
         let cutOffFrequency = cutoffFreqFromValue(value)
+        /*
         conductor.filter.cutoffFrequency = cutOffFrequency
         print("conductor filter = \(conductor.filter.cutoffFrequency)")
+ */
     }
     
     func cutoffFreqFromValue(_ value: Double) -> Double {
