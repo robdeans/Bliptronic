@@ -15,14 +15,15 @@
     let midi = AKMIDI()
     
     var synthesizer = AKFMOscillatorBank()
-    var midiNode: AKMIDINode!
     var reverb: AKReverb2!
+    var filter: AKMoogLadder!
+    
+    var midiNode: AKMIDINode!
     
     var mixer = AKMixer()
     var compressor: AKCompressor!
     
     var sequence = AKSequencer()
-    let sequenceLength = AKDuration(beats: 8.0)
     
     var currentTempo = 220.0 {
         didSet {
@@ -31,6 +32,7 @@
     }
     
     init() {
+
         synthesizer.modulatingMultiplier = 3
         synthesizer.modulationIndex = 0.3
         
@@ -44,6 +46,12 @@
         reverb.randomizeReflections = 600
         reverb.gain = 1
         
+        filter = AKMoogLadder(reverb)
+        filter.resonance = 0.6
+        filter.cutoffFrequency = 300
+        
+        
+        mixer.connect(filter)
         
         compressor = AKCompressor(mixer)
         compressor.headRoom = 0.10
@@ -52,16 +60,18 @@
         compressor.attackTime = 0.01
         compressor.releaseTime = 0.3
         
-        mixer.connect(reverb)
-        
-        setupTrack()
-        
         AudioKit.output = compressor
         AudioKit.start()
+
+        
+        setupTrack()
+
     }
     
     func setupTrack() {
         let _ = sequence.newTrack()
+        let sequenceLength = AKDuration(beats: 8.0)
+
         sequence.setLength(sequenceLength)
         sequence.tracks[0].setMIDIOutput(midiNode.midiIn)
         

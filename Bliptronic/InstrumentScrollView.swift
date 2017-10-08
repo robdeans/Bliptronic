@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class InstrumentScrollView: UIView {
-    
-    let conductor = Conductor.sharedInstance
-    
+        
     var scrollView: UIScrollView!
     var buttonStackView: UIStackView!
     
