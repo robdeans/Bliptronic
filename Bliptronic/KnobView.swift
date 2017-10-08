@@ -72,11 +72,11 @@ class KnobView: UIView {
 
         
         tempoUp = UIButton()
-        tempoUp.setTitle("🔼", for: .normal)
+        tempoUp.setImage(#imageLiteral(resourceName: "arrowUp"), for: .normal)
         tempoUp.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
         
         tempoDown = UIButton()
-        tempoDown.setTitle("🔽", for: .normal)
+        tempoDown.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
         tempoDown.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
         
         currentTempo = conductor.currentTempo
@@ -121,14 +121,15 @@ class KnobView: UIView {
         
         addSubview(tempoUp)
         tempoUp.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
         
         addSubview(tempoTextView)
         tempoTextView.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-            $0.height.equalToSuperview().dividedBy(5)
-            $0.width.equalTo(tempoTextView.snp.height).multipliedBy(2)
+            $0.height.equalToSuperview().dividedBy(6)
+            $0.width.equalTo(tempoTextView.snp.height).multipliedBy(1.5)
             $0.top.equalTo(tempoUp.snp.bottom)
         }
         
@@ -142,7 +143,7 @@ class KnobView: UIView {
     }
     
     func tempoButtonTapped(_ sender: UIButton) {
-        if sender.titleLabel?.text == "🔼" {
+        if sender.imageView?.image == #imageLiteral(resourceName: "arrowUp") {
             currentTempo += 5
             conductor.currentTempo = currentTempo
             tempoTextView.text = "\(currentTempo / 2)"

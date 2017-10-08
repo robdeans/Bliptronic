@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         
         // Add buttons and functionality
         playButton = UIButton()
-        playButton.setTitle("⏹", for: .normal)
+        playButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         playButton.addTarget(self, action: #selector(playOrPause), for: .touchUpInside)
         
         view.addSubview(playButton)
@@ -74,10 +74,10 @@ extension MainViewController {
     func playOrPause() {
         if isPlaying {
             mainScreenView.synthView.conductor.sequence.stop()
-            playButton.setTitle("⏯", for: .normal)
+            playButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         } else {
             mainScreenView.synthView.conductor.sequence.play()
-            playButton.setTitle("⏹", for: .normal)
+            playButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         }
         isPlaying = !isPlaying
     }
