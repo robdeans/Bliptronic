@@ -69,11 +69,13 @@
     }
     
     func setupTrack() {
-        let _ = sequence.newTrack()
         let sequenceLength = AKDuration(beats: 8.0)
 
-        sequence.setLength(sequenceLength)
-        sequence.tracks[0].setMIDIOutput(midiNode.midiIn)
+        for number in 0...7 {
+            let _ = sequence.newTrack()
+            sequence.setLength(sequenceLength)
+            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
+        }
         
         sequence.enableLooping()
         sequence.setTempo(220)
@@ -108,7 +110,7 @@
         
         // sequence.tracks [for this instrument]. add(this note at this velocity, position (column/part of the measure), and duraction)
         // TODO: understand this...
-        sequence.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
@@ -136,6 +138,6 @@
         }
         
         //TODO: Understand this...
-        sequence.tracks[0].clearNote(MIDINoteNumber(note))
+        sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
  }

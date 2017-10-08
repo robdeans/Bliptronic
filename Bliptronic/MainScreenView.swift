@@ -42,7 +42,7 @@ class MainScreenView: UIView {
         instrumentScrollView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().multipliedBy(0.95)
+            $0.width.equalToSuperview()
             $0.height.equalToSuperview().dividedBy(14)
         }
         

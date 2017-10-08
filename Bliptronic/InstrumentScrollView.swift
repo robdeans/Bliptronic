@@ -33,16 +33,25 @@ class InstrumentScrollView: UIView {
     
     func configure() {
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+//        scrollView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         scrollView.layer.cornerRadius = 5
+
         
         let buttonArray = [instrument1, instrument2, instrument3, instrument4, instrument5]
         
-        for (number, button) in buttonArray.enumerated() {
-            button.setTitle("Instrument \(number)", for: .normal)
+        instrument1.setTitle("Shimmer Organ", for: .normal)
+        instrument2.setTitle("Drum Rack", for: .normal)
+        instrument3.setTitle("Sawtooth Bass", for: .normal)
+        instrument4.setTitle("Weird Sound", for: .normal)
+        instrument5.setTitle("Oscillator", for: .normal)
+
+        for button in buttonArray {
             button.titleLabel?.font = UIFont(name: "Futura-Medium", size: 25)
             button.titleLabel?.shadowOffset = CGSize(width: 20, height: 20)
+            
             button.titleLabel?.shadowColor = UIColor.black
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+            button.layer.cornerRadius = 20
             button.addTarget(self, action: #selector(selectInstrument(_:)), for: .touchUpInside)
         }
         
