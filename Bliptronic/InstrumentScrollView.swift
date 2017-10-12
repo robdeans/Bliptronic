@@ -8,9 +8,16 @@
 
 import Foundation
 import UIKit
+import AudioKit
+
+final class Synthesizer: AKPolyphonicNode {
+    
+}
 
 class InstrumentScrollView: UIView {
-        
+    
+    let conductor = Conductor.sharedInstance
+    
     var scrollView: UIScrollView!
     var buttonStackView: UIStackView!
     
@@ -18,7 +25,6 @@ class InstrumentScrollView: UIView {
     var instrument2 = UIButton()
     var instrument3 = UIButton()
     var instrument4 = UIButton()
-    var instrument5 = UIButton()
 
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,15 +43,18 @@ class InstrumentScrollView: UIView {
         scrollView.layer.cornerRadius = 5
 
         
-        let buttonArray = [instrument1, instrument2, instrument3, instrument4, instrument5]
+        let buttonArray = [instrument1, instrument2]
         
-        instrument1.setTitle("Shimmer Organ", for: .normal)
-        instrument2.setTitle("Drum Rack", for: .normal)
-        instrument3.setTitle("Sawtooth Bass", for: .normal)
-        instrument4.setTitle("Weird Sound", for: .normal)
-        instrument5.setTitle("Oscillator", for: .normal)
+        instrument1.setTitle("FM Oscillator", for: .normal)
+        instrument2.setTitle("Phase Distortion Oscillator", for: .normal)
 
-        for button in buttonArray {
+//        instrument4.setTitle("Morphing Oscillator", for: .normal)
+//        instrument3.setTitle("PWM Oscillator", for: .normal)
+
+        for (index, button) in buttonArray.enumerated() {
+            // TODO: Temporary
+            button.tag = index
+            
             button.titleLabel?.font = UIFont(name: "Futura-Medium", size: 25)
             button.titleLabel?.shadowOffset = CGSize(width: 20, height: 20)
             
@@ -82,7 +91,17 @@ class InstrumentScrollView: UIView {
     }
     
     func selectInstrument(_ sender: UIButton) {
-        print("\(sender.titleLabel?.text ?? "nothing") selected")
+
+        print(sender.tag)
+
+        //TODO: make this safer, aka make sure stackViewSubviews == InstrumentRackEnum cases
+        conductor.selectedInstrument = InstrumentRackEnum(rawValue: sender.tag)!
+        
+        
+        //        conductor.midiNode = AKMIDINode(node: conductor.instrumentRack.rack[sender.tag] as! AKPolyphonicNode)
+                
     }
     
 }
+
+

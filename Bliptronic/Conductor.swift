@@ -14,17 +14,21 @@
     
     let midi = AKMIDI()
     
-    var synthesizer = AKFMOscillatorBank()
+    var midiNode: AKMIDINode!
+    var instrumentRack = InstrumentRack()
+    var selectedInstrument: InstrumentRackEnum! {
+        didSet {
+            print("did set")
+            setUpMidiNode(with: selectedInstrument)
+        }
+    }
+    
     var reverb: AKReverb2!
     var filter: AKMoogLadder!
-    
-    var midiNode: AKMIDINode!
-    
     var mixer = AKMixer()
     var compressor: AKCompressor!
     
     var sequence = AKSequencer()
-    
     var currentTempo = 220.0 {
         didSet {
             sequence.setTempo(currentTempo)
@@ -32,11 +36,11 @@
     }
     
     init() {
-
-        synthesizer.modulatingMultiplier = 3
-        synthesizer.modulationIndex = 0.3
+        selectedInstrument = InstrumentRackEnum(rawValue: 0)
+        setUpMidiNode(with: selectedInstrument)
+        /*
+        midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
         
-        midiNode = AKMIDINode(node: synthesizer)
         midiNode.enableMIDI(midi.client, name: "synth midi in")
         
         reverb = AKReverb2(midiNode)
@@ -49,7 +53,6 @@
         filter = AKMoogLadder(reverb)
         filter.resonance = 0.6
         filter.cutoffFrequency = 300
-        
         
         mixer.connect(filter)
         
@@ -65,7 +68,83 @@
 
         
         setupTrack()
+        */
+    }
 
+    func setUpMidiNode(with instrument: InstrumentRackEnum) {
+        
+        switch selectedInstrument.rawValue {
+        case 0:
+            print("DID SET 0")
+            
+            midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
+            midiNode.enableMIDI(midi.client, name: "synth midi in")
+            addStandardEffects(for: midiNode)
+            
+            print("AudioKit.output = \(String(describing: AudioKit.output))")
+//                        AudioKit.output = nil
+//            AudioKit.output?.addConnectionPoint(compressor)
+                        AudioKit.output = mixer
+            
+            print("AudioKit.output = \(String(describing: AudioKit.output))")
+
+            AudioKit.start()
+            setupTrack()
+
+        case 1:
+            print("DID SET 1")
+
+            midiNode = AKMIDINode(node: instrumentRack.phaseDistortionOscillator)
+            midiNode.enableMIDI(midi.client, name: "synth midi in")
+
+            addStandardEffects(for: midiNode)
+            
+            print("AudioKit.output = \(String(describing: AudioKit.output))")
+//            AudioKit.output = nil
+//            AudioKit.output?.addConnectionPoint(compressor)
+            AudioKit.output = mixer
+
+            print("AudioKit.output = \(String(describing: AudioKit.output))")
+            AudioKit.output = mixer
+//            AudioKit.start()
+            setupTrack()
+        case 2:
+            midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
+            midiNode.enableMIDI(midi.client, name: "synth midi in")
+            reverb = AKReverb2(midiNode)
+            print("DID SET 2")
+        case 3:
+            midiNode = AKMIDINode(node: instrumentRack.phaseDistortionOscillator)
+            midiNode.enableMIDI(midi.client, name: "synth midi in")
+            reverb = AKReverb2(midiNode)
+            print("DID SET 3")
+        default:
+            break
+        }
+    }
+    
+    func addStandardEffects(for midiNode: AKMIDINode) {
+        
+        reverb = AKReverb2(midiNode)
+        reverb.dryWetMix = 0.5
+        reverb.decayTimeAt0Hz = 7
+        reverb.decayTimeAtNyquist = 11
+        reverb.randomizeReflections = 600
+        reverb.gain = 1
+        
+        filter = AKMoogLadder(reverb)
+        filter.resonance = 0.6
+        filter.cutoffFrequency = 300
+        
+        mixer.connect(filter)
+        
+//        compressor = AKCompressor(mixer)
+//        compressor.headRoom = 0.10
+//        compressor.threshold = -15
+//        compressor.masterGain = 10
+//        compressor.attackTime = 0.01
+//        compressor.releaseTime = 0.3
+        
     }
     
     func setupTrack() {
@@ -82,6 +161,11 @@
         sequence.play()
     }
     
+ }
+ 
+ // MARK: Add / Remove Notes
+ extension Conductor {
+ 
     func generateNote(for blip: Blip) {
         let position = AKDuration(beats: Double(blip.column))
         let duration = AKDuration(seconds: 0.74)

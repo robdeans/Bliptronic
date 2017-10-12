@@ -170,7 +170,6 @@ extension KnobView: KnobSmallDelegate {
         let cutOffFrequency = cutoffFreqFromValue(value)
         
         conductor.filter.cutoffFrequency = cutOffFrequency
-        print("conductor filter = \(conductor.filter.cutoffFrequency)")
  
     }
     

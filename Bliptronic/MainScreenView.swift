@@ -33,8 +33,8 @@ class MainScreenView: UIView {
 
     func configure() {
         synthView = SynthView()
-        knobView = KnobView()
         instrumentScrollView = InstrumentScrollView()
+        knobView = KnobView()
     }
     
     func constrain() {

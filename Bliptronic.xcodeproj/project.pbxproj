@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */; };
 		E80713091ED4AED9007BA114 /* InstrumentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */; };
+		E81DDF441F8C24D100598FD2 /* InstrumentRack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */; };
 		E86A5D081ECD0AA600DCC783 /* KnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D071ECD0AA600DCC783 /* KnobView.swift */; };
 		E86A5D111ECE297500DCC783 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D091ECE297500DCC783 /* Knob.swift */; };
 		E86A5D121ECE297500DCC783 /* Knob+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */; };
@@ -58,6 +59,7 @@
 		AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.release.xcconfig"; sourceTree = "<group>"; };
 		B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliptronic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentScrollView.swift; sourceTree = "<group>"; };
+		E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentRack.swift; sourceTree = "<group>"; };
 		E86A5D071ECD0AA600DCC783 /* KnobView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobView.swift; sourceTree = "<group>"; };
 		E86A5D091ECE297500DCC783 /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Knob+Touches.swift"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E44A411EC956B2005F787A /* Blip.swift */,
+				E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				E86A5D181ECE297500DCC783 /* WaveformSegmentedView.swift in Sources */,
 				E86A5D151ECE297500DCC783 /* KnobSmall.swift in Sources */,
 				E8E44A421EC956B2005F787A /* Blip.swift in Sources */,
+				E81DDF441F8C24D100598FD2 /* InstrumentRack.swift in Sources */,
 				E86A5D121ECE297500DCC783 /* Knob+Touches.swift in Sources */,
 				E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */,
 				E8E44A4C1EC956EA005F787A /* MainViewController.swift in Sources */,
