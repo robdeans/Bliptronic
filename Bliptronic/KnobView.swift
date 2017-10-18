@@ -21,20 +21,18 @@ class KnobView: UIView {
     
     var cutoffKnob: KnobSmall!
     var resonanceKnob: KnobSmall!
-    var randomKnob1: KnobSmall!
-    var randomKnob2: KnobSmall!
+    var reverbDryWet: KnobSmall!
+    var reverbDelay: KnobSmall!
     
     var tempoUp: UIButton!
     var tempoDown: UIButton!
     var tempoTextView = UITextView()
-    //    {
-    //        didSet {
-    //            if let tempo = Double(tempoTextView.text) {
-    //                conductor.currentTempo = tempo
-    //            }
-    //        }
-    //    }
     var currentTempo: Double = 220
+    
+    var cutoffLabel: UILabel!
+    var resonanceLabel: UILabel!
+    var reverbDryWetLabel: UILabel!
+    var reverbDelayLabel: UILabel!
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -49,13 +47,35 @@ class KnobView: UIView {
     
     func configure() {
         
+        cutoffLabel = UILabel()
+        cutoffLabel.text = "CUTOFF"
+        
+        resonanceLabel = UILabel()
+        resonanceLabel.text = "RESONANCE"
+        
+        reverbDryWetLabel = UILabel()
+        reverbDryWetLabel.text = "DRY/WET"
+        
+        reverbDelayLabel = UILabel()
+        reverbDelayLabel.text = "DECAY TIME"
+        
+        let labelArray = [cutoffLabel, resonanceLabel, reverbDryWetLabel, reverbDelayLabel]
+
+        for label in labelArray {
+                label?.font = UIFont(name: "Futura-Medium", size: 12)
+            label?.textColor = UIColor.white
+            label?.textAlignment = .center
+            label?.numberOfLines = 0
+//            label?.lineBreakMode = .byWordWrapping
+            
+        }
         
         cutoffKnob = KnobSmall()
         resonanceKnob = KnobSmall()
-        randomKnob1 = KnobSmall()
-        randomKnob2 = KnobSmall()
+        reverbDryWet = KnobSmall()
+        reverbDelay = KnobSmall()
 
-        let knobArray = [cutoffKnob, resonanceKnob, randomKnob1, randomKnob2]
+        let knobArray = [cutoffKnob, resonanceKnob, reverbDryWet, reverbDelay]
         
         for (index, knob) in knobArray.enumerated() {
             knob?.tag = index
@@ -72,6 +92,14 @@ class KnobView: UIView {
         resonanceKnob.minimum = 0.01
         resonanceKnob.maximum = 1.99
         resonanceKnob.value = 1.0
+        
+        reverbDryWet.minimum = 0.0
+        reverbDryWet.maximum = 1.0
+        reverbDryWet.value = 0.5
+        
+        reverbDelay.minimum = 0.0001
+        reverbDelay.maximum = 1.0
+        reverbDelay.value = 0.5
         
         tempoUp = UIButton()
         tempoUp.setImage(#imageLiteral(resourceName: "arrowUp"), for: .normal)
@@ -96,29 +124,58 @@ class KnobView: UIView {
     func constrain() {
         addSubview(cutoffKnob)
         cutoffKnob.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().offset(5)
             $0.width.height.equalTo(65)
+        }
+        
+        addSubview(cutoffLabel)
+        cutoffLabel.snp.makeConstraints {
+            $0.top.equalTo(cutoffKnob.snp.bottom)
+            $0.centerX.equalTo(cutoffKnob.snp.centerX).offset(3)
+            $0.width.equalTo(cutoffKnob.snp.width).multipliedBy(1.2)
         }
         
         addSubview(resonanceKnob)
         resonanceKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(cutoffKnob.snp.trailing)
+            $0.leading.equalTo(cutoffKnob.snp.trailing).offset(5)
             $0.width.height.equalTo(65)
         }
         
-        addSubview(randomKnob1)
-        randomKnob1.snp.makeConstraints {
+        addSubview(resonanceLabel)
+        resonanceLabel.snp.makeConstraints {
+            $0.top.equalTo(resonanceKnob.snp.bottom)
+            $0.centerX.equalTo(resonanceKnob.snp.centerX).offset(3)
+            $0.width.equalTo(cutoffKnob.snp.width).multipliedBy(1.2)
+        }
+        
+        addSubview(reverbDryWet)
+        reverbDryWet.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(resonanceKnob.snp.trailing)
+            $0.leading.equalTo(resonanceKnob.snp.trailing).offset(5)
             $0.width.height.equalTo(65)
         }
         
-        addSubview(randomKnob2)
-        randomKnob2.snp.makeConstraints {
+        addSubview(reverbDryWetLabel)
+        reverbDryWetLabel.snp.makeConstraints {
+            $0.top.equalTo(reverbDryWet.snp.bottom)
+            $0.centerX.equalTo(reverbDryWet.snp.centerX).offset(3)
+            $0.width.equalTo(cutoffKnob.snp.width).multipliedBy(1.2)
+        }
+        
+        addSubview(reverbDelay)
+        reverbDelay.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(randomKnob1.snp.trailing)
+            $0.leading.equalTo(reverbDryWet.snp.trailing).offset(5)
             $0.width.height.equalTo(65)
+        }
+        
+        addSubview(reverbDelayLabel)
+        reverbDelayLabel.snp.makeConstraints {
+            $0.top.equalTo(reverbDelay.snp.bottom)
+            $0.centerX.equalTo(reverbDelay.snp.centerX).offset(3)
+            $0.width.equalTo(cutoffKnob.snp.width).multipliedBy(1.2)
         }
         
         addSubview(tempoUp)
@@ -165,32 +222,27 @@ class KnobView: UIView {
 extension KnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
-        print("tag = \(tag)")
-        print("value = \(value)")
+
         switch tag {
         case 0:
-            let cutOffFrequency = cutoffFreqFromValue(value)
-            conductor.filter.cutoffFrequency = cutOffFrequency
+            conductor.filter.cutoffFrequency = logarithmicFreqForValue(value)
         case 1:
             conductor.filter.resonance = value
+        case 2:
+            conductor.reverb.dryWetMix = value
+        case 3:
+            conductor.reverb.maxDelayTime = value
         default:
             break
         }
      }
     
-    func cutoffFreqFromValue(_ value: Double) -> Double {
+    func logarithmicFreqForValue(_ value: Double) -> Double {
         // Logarithmic scale: knobvalue to frequency
         let scaledValue = Double.scaleRangeLog(value, rangeMin: 30, rangeMax: 7_000)
-        print("scaled Value = \(scaledValue)")
         return scaledValue * 4
     }
     
-    func resonanceFreqFromValue(_ value: Double) -> Double {
-        let scaledValue = Double.scaleRangeLog(value, rangeMin: 30, rangeMax: 7_000)
-        
-        print("scaled Value = \(scaledValue)")
-        return scaledValue * 4
-    }
     
 }
 

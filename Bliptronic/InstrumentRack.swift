@@ -31,14 +31,21 @@ final class InstrumentRack {
         morphingOscillator.index = 3
         morphingOscillator.attackDuration = 0.1
         morphingOscillator.releaseDuration = 0.5
-        morphingOscillator.detuningOffset = 875.0
-        morphingOscillator.detuningMultiplier = 2.5
+        morphingOscillator.detuningOffset = 1.0
+        morphingOscillator.detuningMultiplier = 1.0
         
         phaseDistortionOscillator = AKPhaseDistortionOscillatorBank()
-        phaseDistortionOscillator.detuningOffset = 853
-        phaseDistortionOscillator.detuningMultiplier = 1.6
+        phaseDistortionOscillator.detuningOffset = 1.0
+        phaseDistortionOscillator.detuningMultiplier = 1.0
+        phaseDistortionOscillator.phaseDistortion = 0.5
         
         pwmOscillator = AKPWMOscillatorBank()
+        pwmOscillator.pulseWidth = 0.7
+        pwmOscillator.attackDuration = 0.2
+        pwmOscillator.releaseDuration = 0.4
+        pwmOscillator.detuningOffset = 0.1
+        pwmOscillator.detuningMultiplier = 1.0
+        
 
     }
     

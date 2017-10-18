@@ -43,12 +43,12 @@ class InstrumentScrollView: UIView {
         scrollView.layer.cornerRadius = 5
 
         
-        let buttonArray = [instrument1, instrument2, instrument3]
+        let buttonArray = [instrument1, instrument2, instrument3, instrument4]
         
         instrument1.setTitle("FM Oscillator", for: .normal)
         instrument2.setTitle("Morphing Oscillator", for: .normal)
         instrument3.setTitle("Phase Distortion Oscillator", for: .normal)
-//        instrument3.setTitle("PWM Oscillator", for: .normal)
+        instrument4.setTitle("PWM Oscillator", for: .normal)
 
         for (index, button) in buttonArray.enumerated() {
             // TODO: Temporary

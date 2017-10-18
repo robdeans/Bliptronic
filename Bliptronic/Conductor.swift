@@ -77,7 +77,7 @@
     func addStandardEffects(for midiNode: AKMIDINode) {
         reverb = AKReverb2(nil)
         filter = AKKorgLowPassFilter(nil)
-        AudioKit.stop()
+//        AudioKit.stop()
         sequence.stop()
 
         reverb = AKReverb2(midiNode)
