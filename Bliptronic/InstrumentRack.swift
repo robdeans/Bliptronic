@@ -15,12 +15,23 @@ enum InstrumentRackEnum: Int {
     
 }
 
+protocol MyInstruments {
+    
+}
+
+extension AKFMOscillatorBank: MyInstruments {
+
+    
+}
+
 final class InstrumentRack {
     
     var fmOscillator: AKFMOscillatorBank!
     var phaseDistortionOscillator: AKPhaseDistortionOscillatorBank!
     var morphingOscillator: AKMorphingOscillatorBank!
     var pwmOscillator: AKPWMOscillatorBank!
+    
+    var selectedInstrument: AKPolyphonicNode?
     
     init() {
         fmOscillator = AKFMOscillatorBank()

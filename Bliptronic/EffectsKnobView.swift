@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import AudioKit
 
-class KnobView: UIView {
+class EffectsKnobView: UIView {
     
     let conductor = Conductor.sharedInstance
     
@@ -23,11 +23,6 @@ class KnobView: UIView {
     var resonanceKnob: KnobSmall!
     var reverbDryWet: KnobSmall!
     var reverbDelay: KnobSmall!
-    
-    var tempoUp: UIButton!
-    var tempoDown: UIButton!
-    var tempoTextView = UITextView()
-    var currentTempo: Double = 220
     
     var cutoffLabel: UILabel!
     var resonanceLabel: UILabel!
@@ -101,23 +96,6 @@ class KnobView: UIView {
         reverbDelay.maximum = 1.0
         reverbDelay.value = 0.5
         
-        tempoUp = UIButton()
-        tempoUp.setImage(#imageLiteral(resourceName: "arrowUp"), for: .normal)
-        tempoUp.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
-        
-        tempoDown = UIButton()
-        tempoDown.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
-        tempoDown.addTarget(self, action: #selector(tempoButtonTapped(_:)), for: .touchUpInside)
-        
-        currentTempo = conductor.currentTempo
-        
-        tempoTextView.text = "\(currentTempo / 2)"
-        tempoTextView.font = UIFont(name: "Futura-Medium", size: 20)
-        tempoTextView.textColor = UIColor.white
-        tempoTextView.isEditable = false
-        tempoTextView.textAlignment = .right
-        tempoTextView.backgroundColor = UIColor.clear
-        
         
     }
     
@@ -178,48 +156,11 @@ class KnobView: UIView {
             $0.width.equalTo(cutoffKnob.snp.width).multipliedBy(1.2)
         }
         
-        addSubview(tempoUp)
-        tempoUp.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
-        
-        addSubview(tempoTextView)
-        tempoTextView.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
-            $0.height.equalToSuperview().dividedBy(6)
-            $0.width.equalTo(tempoTextView.snp.height).multipliedBy(1.5)
-            $0.top.equalTo(tempoUp.snp.bottom)
-        }
-        
-        addSubview(tempoDown)
-        tempoDown.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
-            $0.top.equalTo(tempoTextView.snp.bottom)
-        }
-        
-        
-    }
-    
-    func tempoButtonTapped(_ sender: UIButton) {
-        if sender.imageView?.image == #imageLiteral(resourceName: "arrowUp") {
-            currentTempo += 5
-            conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo / 2)"
-            
-        } else {
-            currentTempo -= 5
-            conductor.currentTempo = currentTempo
-            tempoTextView.text = "\(currentTempo / 2)"
-            
-        }
-        
-        
     }
     
 }
 
-extension KnobView: KnobSmallDelegate {
+extension EffectsKnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
 

@@ -12,22 +12,24 @@
     
     static let sharedInstance = Conductor()
     
+    //MARK: Midi
     let midi = AKMIDI()
-    
     var midiNode: AKMIDINode!
+    
+    //MARK: Instrument rack
     var instrumentRack = InstrumentRack()
     var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
         didSet {
             setUpMidiNode(with: selectedInstrument)
         }
     }
-    
+
+    //MARK: Effects
     var reverb = AKReverb2(nil)
     var filter = AKKorgLowPassFilter(nil)
     var mixer = AKMixer()
-//    var resonance = AKModalResonanceFilter(nil)
-//    var compressor: AKCompressor!
-    
+
+    //MARK: Sequencer
     var sequence = AKSequencer()
     var currentTempo = 220.0 {
         didSet {
@@ -35,11 +37,13 @@
         }
     }
     
+    //MARK: Init() methods
     init() {
         setUpMidiNode(with: selectedInstrument)
         sequence.enableLooping()
         sequence.setTempo(220)
         sequence.play()
+//        instrumentRack.selectedInstrument.
     }
 
     func setUpMidiNode(with instrument: InstrumentRackEnum) {
@@ -68,16 +72,11 @@
         default:
             break
         }
-        
-//        AudioKit.start()
-//        setupTrack()
-        
     }
     
     func addStandardEffects(for midiNode: AKMIDINode) {
         reverb = AKReverb2(nil)
         filter = AKKorgLowPassFilter(nil)
-//        AudioKit.stop()
         sequence.stop()
 
         reverb = AKReverb2(midiNode)
@@ -103,28 +102,6 @@
             sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
         }
         
-        sequence.play()
-        // Connection to mixer must be intialized (/self-owned?); not Compressor!, but maybe Compressor()
-//        compressor = AKCompressor(mixer)
-//        compressor.headRoom = 0.10
-//        compressor.threshold = -15
-//        compressor.masterGain = 10
-//        compressor.attackTime = 0.01
-//        compressor.releaseTime = 0.3
-        
-    }
-    
-    func setupTrack() {
-        let sequenceLength = AKDuration(beats: 8.0)
-
-        for number in 0...7 {
-            let _ = sequence.newTrack()
-            sequence.setLength(sequenceLength)
-            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
-        }
-        
-        sequence.enableLooping()
-        sequence.setTempo(220)
         sequence.play()
     }
     
