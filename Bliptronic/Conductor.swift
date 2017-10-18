@@ -37,6 +37,9 @@
     
     init() {
         setUpMidiNode(with: selectedInstrument)
+        sequence.enableLooping()
+        sequence.setTempo(220)
+        sequence.play()
     }
 
     func setUpMidiNode(with instrument: InstrumentRackEnum) {
@@ -66,14 +69,16 @@
             break
         }
         
-        AudioKit.start()
-        setupTrack()
+//        AudioKit.start()
+//        setupTrack()
         
     }
     
     func addStandardEffects(for midiNode: AKMIDINode) {
         reverb = AKReverb2(nil)
         filter = AKKorgLowPassFilter(nil)
+        AudioKit.stop()
+        sequence.stop()
 
         reverb = AKReverb2(midiNode)
         reverb.dryWetMix = 0.5
@@ -88,7 +93,17 @@
         
         mixer.connect(filter)
         AudioKit.output = mixer
-
+        AudioKit.start()
+        
+        let sequenceLength = AKDuration(beats: 8.0)
+        
+        for number in 0...7 {
+            let _ = sequence.newTrack()
+            sequence.setLength(sequenceLength)
+            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
+        }
+        
+        sequence.play()
         // Connection to mixer must be intialized (/self-owned?); not Compressor!, but maybe Compressor()
 //        compressor = AKCompressor(mixer)
 //        compressor.headRoom = 0.10

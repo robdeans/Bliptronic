@@ -27,8 +27,12 @@ final class InstrumentRack {
         fmOscillator.modulatingMultiplier = 3
         fmOscillator.modulationIndex = 0.3
         
-        morphingOscillator = AKMorphingOscillatorBank(waveformArray: [AKTable(.sawtooth)])
+        morphingOscillator = AKMorphingOscillatorBank()
         morphingOscillator.index = 3
+        morphingOscillator.attackDuration = 0.1
+        morphingOscillator.releaseDuration = 0.5
+        morphingOscillator.detuningOffset = 875.0
+        morphingOscillator.detuningMultiplier = 2.5
         
         phaseDistortionOscillator = AKPhaseDistortionOscillatorBank()
         phaseDistortionOscillator.detuningOffset = 853
