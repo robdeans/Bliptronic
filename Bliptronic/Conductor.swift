@@ -20,7 +20,7 @@
     var instrumentRack = InstrumentRack()
     var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
         didSet {
-            setUpMidiNode(with: selectedInstrument)
+            configure(for: selectedInstrument)
         }
     }
 
@@ -39,14 +39,14 @@
     
     //MARK: Init() methods
     init() {
-        setUpMidiNode(with: selectedInstrument)
+        configure(for: selectedInstrument)
         sequence.enableLooping()
         sequence.setTempo(220)
         sequence.play()
 //        instrumentRack.selectedInstrument.
     }
 
-    func setUpMidiNode(with instrument: InstrumentRackEnum) {
+    func configure(for instrument: InstrumentRackEnum) {
         
         switch selectedInstrument.rawValue {
         case 0:

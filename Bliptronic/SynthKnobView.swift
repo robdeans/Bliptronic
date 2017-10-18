@@ -23,14 +23,17 @@ class SynthKnobView: UIView {
     var releaseKnob: KnobSmall!
     var indexKnob: KnobSmall!
     var multiplierKnob: KnobSmall!
-    var carrierKnob: KnobSmall!
+    var xFactorKnob: KnobSmall!
     
     var attackLabel: UILabel!
     var releaseLabel: UILabel!
     var indexLabel: UILabel!
     var multiplierLabel: UILabel!
-    var carrierLabel: UILabel!
-
+    var xFactorLabel: UILabel!
+    
+    var knobStackView: UIStackView!
+    
+    
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -57,10 +60,10 @@ class SynthKnobView: UIView {
         multiplierLabel = UILabel()
         multiplierLabel.text = "MULTIPLIER"
         
-        carrierLabel = UILabel()
-        carrierLabel.text = "CARRIER"
+        xFactorLabel = UILabel()
+        xFactorLabel.text = "????"
         
-        let labelArray = [attackLabel, releaseLabel, indexLabel, multiplierLabel]
+        let labelArray = [attackLabel, releaseLabel, indexLabel, multiplierLabel, xFactorLabel]
         
         for label in labelArray {
             label?.font = UIFont(name: "Futura-Medium", size: 12)
@@ -75,8 +78,9 @@ class SynthKnobView: UIView {
         releaseKnob = KnobSmall()
         indexKnob = KnobSmall()
         multiplierKnob = KnobSmall()
+        xFactorKnob = KnobSmall()
         
-        let knobArray = [attackKnob, releaseKnob, indexKnob, multiplierKnob]
+        let knobArray = [attackKnob, releaseKnob, xFactorKnob]
         
         for (index, knob) in knobArray.enumerated() {
             knob?.tag = index
@@ -85,82 +89,117 @@ class SynthKnobView: UIView {
         }
         
         // If knob is a logarithmic measurement, use 0-1.0 range and calculate
-        attackKnob.maximum = 1.0
-        attackKnob.minimum = 0
-        attackKnob.value = 0.5
-        
         // If linear use measurement's min and max values
+        
+        attackKnob.minimum = 0.001
+        attackKnob.maximum = 2.0
+        attackKnob.value = 0.1
+        
         releaseKnob.minimum = 0.01
-        releaseKnob.maximum = 1.99
-        releaseKnob.value = 1.0
+        releaseKnob.maximum = 2.00
+        releaseKnob.value = 0.1
         
-        indexKnob.minimum = 0.0
-        indexKnob.maximum = 1.0
-        indexKnob.value = 0.5
+        xFactorKnob.minimum = 0.0
+        xFactorKnob.maximum = 2.0
+        xFactorKnob.value = 1.0
         
-        multiplierKnob.minimum = 0.0001
-        multiplierKnob.maximum = 1.0
-        multiplierKnob.value = 0.5
+        /*
+         indexKnob.minimum = 0.0
+         indexKnob.maximum = 1.0
+         indexKnob.value = 0.5
+         
+         multiplierKnob.minimum = 0.0001
+         multiplierKnob.maximum = 1.0
+         multiplierKnob.value = 0.5
+         */
         
+        //Knob class inherits from UIView so this should work
+        knobStackView = UIStackView(arrangedSubviews: knobArray as! [UIView])
+        knobStackView.alignment = .center
+        knobStackView.distribution = .equalSpacing
+        knobStackView.spacing = 5
+        knobStackView.axis = .horizontal
         
     }
     
+    //TODO: Add a stackview
     func constrain() {
-        addSubview(attackKnob)
-        attackKnob.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().offset(5)
-            $0.width.height.equalTo(65)
-        }
         
-        addSubview(attackLabel)
-        attackLabel.snp.makeConstraints {
-            $0.top.equalTo(attackKnob.snp.bottom)
-            $0.centerX.equalTo(attackKnob.snp.centerX).offset(3)
-            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-        }
+//        addSubview(knobStackView)
+//        knobStackView.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
         
-        addSubview(releaseKnob)
-        releaseKnob.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalTo(attackKnob.snp.trailing).offset(5)
-            $0.width.height.equalTo(65)
-        }
+         addSubview(attackKnob)
+         attackKnob.snp.makeConstraints {
+         $0.top.equalToSuperview()
+         $0.leading.equalToSuperview().offset(5)
+         $0.width.height.equalTo(65)
+         }
+         
+         addSubview(attackLabel)
+         attackLabel.snp.makeConstraints {
+         $0.top.equalTo(attackKnob.snp.bottom)
+         $0.centerX.equalTo(attackKnob.snp.centerX).offset(3)
+         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+         }
+         
+         addSubview(releaseKnob)
+         releaseKnob.snp.makeConstraints {
+         $0.top.equalToSuperview()
+         $0.leading.equalTo(attackKnob.snp.trailing).offset(5)
+         $0.width.height.equalTo(65)
+         }
+         
+         addSubview(releaseLabel)
+         releaseLabel.snp.makeConstraints {
+         $0.top.equalTo(releaseKnob.snp.bottom)
+         $0.centerX.equalTo(releaseKnob.snp.centerX).offset(3)
+         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+         }
         
-        addSubview(releaseLabel)
-        releaseLabel.snp.makeConstraints {
-            $0.top.equalTo(releaseKnob.snp.bottom)
-            $0.centerX.equalTo(releaseKnob.snp.centerX).offset(3)
-            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-        }
-        
-        addSubview(indexKnob)
-        indexKnob.snp.makeConstraints {
+        addSubview(xFactorKnob)
+        xFactorKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(releaseKnob.snp.trailing).offset(5)
             $0.width.height.equalTo(65)
         }
         
-        addSubview(indexLabel)
-        indexLabel.snp.makeConstraints {
-            $0.top.equalTo(indexKnob.snp.bottom)
-            $0.centerX.equalTo(indexKnob.snp.centerX).offset(3)
+        addSubview(xFactorLabel)
+        xFactorLabel.snp.makeConstraints {
+            $0.top.equalTo(xFactorKnob.snp.bottom)
+            $0.centerX.equalTo(xFactorKnob.snp.centerX).offset(3)
             $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
         }
-        
-        addSubview(multiplierKnob)
-        multiplierKnob.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalTo(indexKnob.snp.trailing).offset(5)
-            $0.width.height.equalTo(65)
-        }
-        
-        addSubview(multiplierLabel)
-        multiplierLabel.snp.makeConstraints {
-            $0.top.equalTo(multiplierKnob.snp.bottom)
-            $0.centerX.equalTo(multiplierKnob.snp.centerX).offset(3)
-            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-        }
+         /*
+         addSubview(indexKnob)
+         indexKnob.snp.makeConstraints {
+         $0.top.equalToSuperview()
+         $0.leading.equalTo(releaseKnob.snp.trailing).offset(5)
+         $0.width.height.equalTo(65)
+         }
+         
+         addSubview(indexLabel)
+         indexLabel.snp.makeConstraints {
+         $0.top.equalTo(indexKnob.snp.bottom)
+         $0.centerX.equalTo(indexKnob.snp.centerX).offset(3)
+         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+         }
+         
+         addSubview(multiplierKnob)
+         multiplierKnob.snp.makeConstraints {
+         $0.top.equalToSuperview()
+         $0.leading.equalTo(indexKnob.snp.trailing).offset(5)
+         $0.width.height.equalTo(65)
+         }
+         
+         addSubview(multiplierLabel)
+         multiplierLabel.snp.makeConstraints {
+         $0.top.equalTo(multiplierKnob.snp.bottom)
+         $0.centerX.equalTo(multiplierKnob.snp.centerX).offset(3)
+         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+         }
+         */
     }
     
 }
@@ -169,17 +208,73 @@ extension SynthKnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
         
-        switch tag {
+        //TODO: This is ridiculous
+        switch conductor.selectedInstrument.rawValue {
         case 0:
-            print("")
+            switch tag {
+            case 0:
+                conductor.instrumentRack.fmOscillator.attackDuration = value
+            case 1:
+                conductor.instrumentRack.fmOscillator.releaseDuration = value
+            case 2:
+                print("index")
+            case 3:
+                print("multiplier")
+            case 4:
+                print("magic")
+            default:
+                break
+            }
+            
         case 1:
-            conductor.filter.resonance = value
+            switch tag {
+            case 0:
+                conductor.instrumentRack.morphingOscillator.attackDuration = value
+            case 1:
+                conductor.instrumentRack.morphingOscillator.releaseDuration = value
+            case 2:
+                print("index")
+            case 3:
+                print("multiplier")
+            case 4:
+                print("magic")
+            default:
+                break
+            }
+            
         case 2:
-            conductor.reverb.dryWetMix = value
+            switch tag {
+            case 0:
+                conductor.instrumentRack.phaseDistortionOscillator.attackDuration = value
+            case 1:
+                conductor.instrumentRack.phaseDistortionOscillator.releaseDuration = value
+            case 2:
+                print("index")
+            case 3:
+                print("multiplier")
+            case 4:
+                print("magic")
+            default:
+                break
+            }
+            
         case 3:
-            conductor.reverb.maxDelayTime = value
-        case 4:
-            print("")
+        
+            switch tag {
+            case 0:
+                conductor.instrumentRack.pwmOscillator.attackDuration = value
+            case 1:
+                conductor.instrumentRack.pwmOscillator.releaseDuration = value
+            case 2:
+                print("index")
+            case 3:
+                print("multiplier")
+            case 4:
+                print("magic")
+            default:
+                break
+            }
+            
         default:
             break
         }
