@@ -16,17 +16,17 @@
     
     var midiNode: AKMIDINode!
     var instrumentRack = InstrumentRack()
-    var selectedInstrument: InstrumentRackEnum! {
+    var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
         didSet {
-            print("did set")
             setUpMidiNode(with: selectedInstrument)
         }
     }
     
-    var reverb: AKReverb2!
-    var filter: AKMoogLadder!
+    var reverb = AKReverb2(nil)
+    var filter = AKKorgLowPassFilter(nil)
     var mixer = AKMixer()
-    var compressor: AKCompressor!
+//    var resonance = AKModalResonanceFilter(nil)
+//    var compressor: AKCompressor!
     
     var sequence = AKSequencer()
     var currentTempo = 220.0 {
@@ -36,108 +36,60 @@
     }
     
     init() {
-        selectedInstrument = InstrumentRackEnum(rawValue: 0)
         setUpMidiNode(with: selectedInstrument)
-        /*
-        midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
-        
-        midiNode.enableMIDI(midi.client, name: "synth midi in")
-        
-        reverb = AKReverb2(midiNode)
-        reverb.dryWetMix = 0.5
-        reverb.decayTimeAt0Hz = 7
-        reverb.decayTimeAtNyquist = 11
-        reverb.randomizeReflections = 600
-        reverb.gain = 1
-        
-        filter = AKMoogLadder(reverb)
-        filter.resonance = 0.6
-        filter.cutoffFrequency = 300
-        
-        mixer.connect(filter)
-        
-        compressor = AKCompressor(mixer)
-        compressor.headRoom = 0.10
-        compressor.threshold = -15
-        compressor.masterGain = 10
-        compressor.attackTime = 0.01
-        compressor.releaseTime = 0.3
-        
-        AudioKit.output = compressor
-        AudioKit.start()
-
-        
-        setupTrack()
-        */
     }
 
     func setUpMidiNode(with instrument: InstrumentRackEnum) {
         
         switch selectedInstrument.rawValue {
         case 0:
-            print("DID SET 0")
-            
             midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
             midiNode.enableMIDI(midi.client, name: "synth midi in")
             addStandardEffects(for: midiNode)
-            
-            print("AudioKit.output = \(String(describing: AudioKit.output))")
-//                        AudioKit.output = nil
-//            AudioKit.output?.addConnectionPoint(compressor)
-                        AudioKit.output = mixer
-            
-            print("AudioKit.output = \(String(describing: AudioKit.output))")
-
-            AudioKit.start()
-            setupTrack()
-
+            print("fm")
         case 1:
-            print("DID SET 1")
-
-            midiNode = AKMIDINode(node: instrumentRack.phaseDistortionOscillator)
+            midiNode = AKMIDINode(node: instrumentRack.morphingOscillator)
             midiNode.enableMIDI(midi.client, name: "synth midi in")
-
             addStandardEffects(for: midiNode)
-            
-            print("AudioKit.output = \(String(describing: AudioKit.output))")
-//            AudioKit.output = nil
-//            AudioKit.output?.addConnectionPoint(compressor)
-            AudioKit.output = mixer
-
-            print("AudioKit.output = \(String(describing: AudioKit.output))")
-            AudioKit.output = mixer
-//            AudioKit.start()
-            setupTrack()
+            print("morphing")
         case 2:
-            midiNode = AKMIDINode(node: instrumentRack.fmOscillator)
-            midiNode.enableMIDI(midi.client, name: "synth midi in")
-            reverb = AKReverb2(midiNode)
-            print("DID SET 2")
-        case 3:
             midiNode = AKMIDINode(node: instrumentRack.phaseDistortionOscillator)
             midiNode.enableMIDI(midi.client, name: "synth midi in")
-            reverb = AKReverb2(midiNode)
-            print("DID SET 3")
+            addStandardEffects(for: midiNode)
+            print("phase")
+        case 3:
+            midiNode = AKMIDINode(node: instrumentRack.pwmOscillator)
+            midiNode.enableMIDI(midi.client, name: "synth midi in")
+            addStandardEffects(for: midiNode)
+            print("pwm")
         default:
             break
         }
+        
+        AudioKit.start()
+        setupTrack()
+        
     }
     
     func addStandardEffects(for midiNode: AKMIDINode) {
-        
+        reverb = AKReverb2(nil)
+        filter = AKKorgLowPassFilter(nil)
+
         reverb = AKReverb2(midiNode)
         reverb.dryWetMix = 0.5
         reverb.decayTimeAt0Hz = 7
         reverb.decayTimeAtNyquist = 11
         reverb.randomizeReflections = 600
         reverb.gain = 1
-        
-        filter = AKMoogLadder(reverb)
-        filter.resonance = 0.6
-        filter.cutoffFrequency = 300
+
+        filter = AKKorgLowPassFilter(reverb)
+        filter.resonance = 1.0
+        filter.cutoffFrequency = 2500
         
         mixer.connect(filter)
-        
+        AudioKit.output = mixer
+
+        // Connection to mixer must be intialized (/self-owned?); not Compressor!, but maybe Compressor()
 //        compressor = AKCompressor(mixer)
 //        compressor.headRoom = 0.10
 //        compressor.threshold = -15
@@ -192,8 +144,7 @@
             break
         }
         
-        // sequence.tracks [for this instrument]. add(this note at this velocity, position (column/part of the measure), and duraction)
-        // TODO: understand this...
+        // TODO: how many tracks are actually needed?
         sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
@@ -221,7 +172,7 @@
             break
         }
         
-        //TODO: Understand this...
+        //TODO: Same as above
         sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
  }

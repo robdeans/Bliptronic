@@ -43,12 +43,11 @@ class InstrumentScrollView: UIView {
         scrollView.layer.cornerRadius = 5
 
         
-        let buttonArray = [instrument1, instrument2]
+        let buttonArray = [instrument1, instrument2, instrument3]
         
         instrument1.setTitle("FM Oscillator", for: .normal)
-        instrument2.setTitle("Phase Distortion Oscillator", for: .normal)
-
-//        instrument4.setTitle("Morphing Oscillator", for: .normal)
+        instrument2.setTitle("Morphing Oscillator", for: .normal)
+        instrument3.setTitle("Phase Distortion Oscillator", for: .normal)
 //        instrument3.setTitle("PWM Oscillator", for: .normal)
 
         for (index, button) in buttonArray.enumerated() {
@@ -91,15 +90,8 @@ class InstrumentScrollView: UIView {
     }
     
     func selectInstrument(_ sender: UIButton) {
-
-        print(sender.tag)
-
         //TODO: make this safer, aka make sure stackViewSubviews == InstrumentRackEnum cases
         conductor.selectedInstrument = InstrumentRackEnum(rawValue: sender.tag)!
-        
-        
-        //        conductor.midiNode = AKMIDINode(node: conductor.instrumentRack.rack[sender.tag] as! AKPolyphonicNode)
-                
     }
     
 }

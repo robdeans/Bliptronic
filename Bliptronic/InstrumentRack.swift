@@ -8,39 +8,34 @@
 
 import AudioKit
 
+
+//TODO: Move inside of InstrumentRack and make it a local enum
 enum InstrumentRackEnum: Int {
-    case fmOscillator = 0, morphingOscillator, pwmOscillator, phaseDistortionOscillator
+    case fmOscillator = 0, morphingOscillator, phaseDistortionOscillator, pwmOscillator
     
-    //    var selectedInstrument: Int {
-    //        get {
-    //            switch self {
-    //                case .fmOscillator
-    //            }
-    //        }
-    //    }
 }
 
 final class InstrumentRack {
     
     var fmOscillator: AKFMOscillatorBank!
     var phaseDistortionOscillator: AKPhaseDistortionOscillatorBank!
-    //    var morphingOscillator: AKMorphingOscillator!
-    //    var pwmOscillator: AKPWMOscillatorBank!
+    var morphingOscillator: AKMorphingOscillatorBank!
+    var pwmOscillator: AKPWMOscillatorBank!
     
     init() {
         fmOscillator = AKFMOscillatorBank()
         fmOscillator.modulatingMultiplier = 3
         fmOscillator.modulationIndex = 0.3
-        /*
-         morphingOscillator = AKMorphingOscillator(waveformArray: [AKTable(.sine), AKTable(.triangle), AKTable(.sawtooth), AKTable(.square)])
-         morphingOscillator.frequency = 400
-         morphingOscillator.amplitude = 0.1
-         morphingOscillator.index = 0.8
-         */
+        
+        morphingOscillator = AKMorphingOscillatorBank(waveformArray: [AKTable(.sawtooth)])
+        morphingOscillator.index = 3
         
         phaseDistortionOscillator = AKPhaseDistortionOscillatorBank()
-        phaseDistortionOscillator.phaseDistortion = 0.0
+        phaseDistortionOscillator.detuningOffset = 853
+        phaseDistortionOscillator.detuningMultiplier = 1.6
         
+        pwmOscillator = AKPWMOscillatorBank()
+
     }
     
 }
