@@ -1,5 +1,5 @@
 //
-//  SynthKnobView.swift
+//  EnvelopeView.swift
 //  Bliptronic
 //
 //  Created by Robert Deans on 10/18/17.
@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import AudioKit
 
-class SynthKnobView: UIView {
+class EnvelopeView: UIView {
     
     let conductor = Conductor.sharedInstance
     
@@ -78,7 +78,7 @@ class SynthKnobView: UIView {
         }
         
         attackKnob.minimum = 0.001
-        attackKnob.maximum = 2.0
+        attackKnob.maximum = 1.0
         attackKnob.value = 0.2
         
         decayKnob.minimum = 0.01
@@ -170,7 +170,7 @@ class SynthKnobView: UIView {
     
 }
 
-extension SynthKnobView: KnobSmallDelegate {
+extension EnvelopeView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
         print(value)

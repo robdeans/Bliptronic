@@ -80,7 +80,7 @@ class EffectsKnobView: UIView {
 
         // If knob is a logarithmic measurement, use 0-1.0 range and calculate
         cutoffKnob.maximum = 1.0
-        cutoffKnob.minimum = 0
+        cutoffKnob.minimum = -0.2
         cutoffKnob.value = 0.5
         
         // If linear use measurement's min and max values

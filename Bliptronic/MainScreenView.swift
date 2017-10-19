@@ -16,7 +16,7 @@ class MainScreenView: UIView {
     var synthView: SynthView!
     var globalView: GlobalView!
     var effectsKnobView: EffectsKnobView!
-    var synthKnobView: SynthKnobView!
+    var envelopeView: EnvelopeView!
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -38,7 +38,7 @@ class MainScreenView: UIView {
         instrumentScrollView = InstrumentScrollView()
         globalView = GlobalView()
         effectsKnobView = EffectsKnobView()
-        synthKnobView = SynthKnobView()
+        envelopeView = EnvelopeView()
     }
     
     func constrain() {
@@ -73,8 +73,8 @@ class MainScreenView: UIView {
             $0.height.equalTo(globalView.snp.height).dividedBy(2)
         }
         
-        addSubview(synthKnobView)
-        synthKnobView.snp.makeConstraints {
+        addSubview(envelopeView)
+        envelopeView.snp.makeConstraints {
             $0.top.equalTo(effectsKnobView.snp.bottom)
             $0.leading.bottom.equalToSuperview()
             $0.trailing.equalTo(globalView.snp.leading)
