@@ -21,8 +21,6 @@ class GlobalView: UIView {
     var currentTempo: Double = 220
     
     var playButton: UIButton!
-    var isPlaying = true
-
     
     // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -109,14 +107,12 @@ class GlobalView: UIView {
     }
     
     func playOrPause() {
-        if isPlaying {
-            conductor.sequence.stop()
+        if conductor.isPlaying {
             playButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         } else {
-            conductor.sequence.play()
             playButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         }
-        isPlaying = !isPlaying
+        conductor.isPlaying = !conductor.isPlaying
     }
     
 }

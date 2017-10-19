@@ -15,14 +15,6 @@ enum InstrumentRackEnum: Int {
     
 }
 
-protocol MyInstruments {
-    
-}
-
-extension AKFMOscillatorBank: MyInstruments {
-
-    
-}
 
 final class InstrumentRack {
     

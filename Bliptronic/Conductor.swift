@@ -16,6 +16,23 @@
     let midi = AKMIDI()
     var midiNode: AKMIDINode!
     
+    //MARK: Sequencer
+    var sequencer = AKSequencer()
+    var currentTempo = 220.0 {
+        didSet {
+            sequencer.setTempo(currentTempo)
+        }
+    }
+    var isPlaying = true {
+        didSet {
+            if isPlaying {
+                sequencer.play()
+            } else {
+                sequencer.stop()
+            }
+        }
+    }
+    
     //MARK: Instrument rack
     var instrumentRack = InstrumentRack()
     var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
@@ -29,20 +46,13 @@
     var filter = AKKorgLowPassFilter(nil)
     var mixer = AKMixer()
 
-    //MARK: Sequencer
-    var sequence = AKSequencer()
-    var currentTempo = 220.0 {
-        didSet {
-            sequence.setTempo(currentTempo)
-        }
-    }
-    
+
     //MARK: Init() methods
     init() {
         configure(for: selectedInstrument)
-        sequence.enableLooping()
-        sequence.setTempo(220)
-        sequence.play()
+        sequencer.enableLooping()
+        sequencer.setTempo(220)
+        sequencer.play()
 //        instrumentRack.selectedInstrument.
     }
 
@@ -77,7 +87,7 @@
     func addStandardEffects(for midiNode: AKMIDINode) {
         reverb = AKReverb2(nil)
         filter = AKKorgLowPassFilter(nil)
-        sequence.stop()
+        sequencer.stop()
 
         reverb = AKReverb2(midiNode)
         reverb.dryWetMix = 0.5
@@ -97,14 +107,15 @@
         let sequenceLength = AKDuration(beats: 8.0)
         
         for number in 0...7 {
-            let _ = sequence.newTrack()
-            sequence.setLength(sequenceLength)
-            sequence.tracks[number].setMIDIOutput(midiNode.midiIn)
+            let _ = sequencer.newTrack()
+            sequencer.setLength(sequenceLength)
+            sequencer.tracks[number].setMIDIOutput(midiNode.midiIn)
         }
         
-        sequence.play()
+        if isPlaying {
+            sequencer.play()
+        }
     }
-    
  }
  
  // MARK: Add / Remove Notes
@@ -137,7 +148,7 @@
         }
         
         // TODO: how many tracks are actually needed?
-        sequence.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
+        sequencer.tracks[blip.column].add(noteNumber: MIDINoteNumber(note), velocity: 120, position: position, duration: duration)
     }
     
     func removeNote(for blip: Blip) {
@@ -165,6 +176,6 @@
         }
         
         //TODO: Same as above
-        sequence.tracks[blip.column].clearNote(MIDINoteNumber(note))
+        sequencer.tracks[blip.column].clearNote(MIDINoteNumber(note))
     }
  }
