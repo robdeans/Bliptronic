@@ -59,7 +59,7 @@ class SynthView: UIView {
                 let blipButton = BlipButton(column: column, row: rowCounter)
                 
                 blipButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-                
+//                blipButton.backgroundColor = UIColor.generateRandomColor()
                 columnStackView.addArrangedSubview(blipButton)
                 
                 rowCounter -= 1

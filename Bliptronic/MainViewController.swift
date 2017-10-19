@@ -14,15 +14,9 @@ class MainViewController: UIViewController {
     
     var mainScreenView: MainScreenView!
     
-    var playButton: UIButton!    
-    var isPlaying = true
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
-
-        
     }
     
     
@@ -33,17 +27,6 @@ class MainViewController: UIViewController {
         mainScreenView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        // Add buttons and functionality
-        playButton = UIButton()
-        playButton.setTitle("⏹", for: .normal)
-        playButton.addTarget(self, action: #selector(playOrPause), for: .touchUpInside)
-        
-        view.addSubview(playButton)
-        playButton.snp.makeConstraints {
-            $0.trailing.bottom.equalToSuperview()
-        }
-        
         
         // Add Background
         let pastelView = PastelView(frame: view.bounds)
@@ -67,21 +50,5 @@ class MainViewController: UIViewController {
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
     }
-}
-
-extension MainViewController {
-    
-    func playOrPause() {
-        if isPlaying {
-            mainScreenView.synthView.conductor.sequence.stop()
-            playButton.setTitle("⏯", for: .normal)
-        } else {
-            mainScreenView.synthView.conductor.sequence.play()
-            playButton.setTitle("⏹", for: .normal)
-        }
-        isPlaying = !isPlaying
-    }
-    
-    
 }
 

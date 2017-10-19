@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		70534A5980925DF4702F9B41 /* Pods_Bliptronic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */; };
 		E80713091ED4AED9007BA114 /* InstrumentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */; };
-		E86A5D081ECD0AA600DCC783 /* KnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D071ECD0AA600DCC783 /* KnobView.swift */; };
+		E81DDF441F8C24D100598FD2 /* InstrumentRack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */; };
+		E86A5D081ECD0AA600DCC783 /* EffectsKnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D071ECD0AA600DCC783 /* EffectsKnobView.swift */; };
 		E86A5D111ECE297500DCC783 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D091ECE297500DCC783 /* Knob.swift */; };
 		E86A5D121ECE297500DCC783 /* Knob+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */; };
 		E86A5D131ECE297500DCC783 /* KnobLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D0B1ECE297500DCC783 /* KnobLarge.swift */; };
@@ -23,6 +24,8 @@
 		E86A5D221ECE29E200DCC783 /* SMBasicSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D1D1ECE29E200DCC783 /* SMBasicSegmentView.swift */; };
 		E86A5D231ECE29E200DCC783 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D1E1ECE29E200DCC783 /* SMSegment.swift */; };
 		E86A5D241ECE29E200DCC783 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86A5D1F1ECE29E200DCC783 /* SMSegmentView.swift */; };
+		E893C02C1F9709F600CFA15E /* EnvelopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893C02B1F9709F600CFA15E /* EnvelopeView.swift */; };
+		E893C02E1F970E6600CFA15E /* GlobalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893C02D1F970E6600CFA15E /* GlobalView.swift */; };
 		E8A5F3341ECCDF0900C5310D /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5F3331ECCDF0900C5310D /* Conductor.swift */; };
 		E8DFC70E1ECB7DBD00A6360C /* TunerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */; };
 		E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E449FB1EC9561B005F787A /* AppDelegate.swift */; };
@@ -58,7 +61,8 @@
 		AA1201683D02253F0B7EC33A /* Pods-Bliptronic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliptronic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bliptronic/Pods-Bliptronic.release.xcconfig"; sourceTree = "<group>"; };
 		B6254E4EC84E5D1D59BEF676 /* Pods_Bliptronic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliptronic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentScrollView.swift; sourceTree = "<group>"; };
-		E86A5D071ECD0AA600DCC783 /* KnobView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobView.swift; sourceTree = "<group>"; };
+		E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentRack.swift; sourceTree = "<group>"; };
+		E86A5D071ECD0AA600DCC783 /* EffectsKnobView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsKnobView.swift; sourceTree = "<group>"; };
 		E86A5D091ECE297500DCC783 /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		E86A5D0A1ECE297500DCC783 /* Knob+Touches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Knob+Touches.swift"; sourceTree = "<group>"; };
 		E86A5D0B1ECE297500DCC783 /* KnobLarge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnobLarge.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		E86A5D1D1ECE29E200DCC783 /* SMBasicSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBasicSegmentView.swift; sourceTree = "<group>"; };
 		E86A5D1E1ECE29E200DCC783 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		E86A5D1F1ECE29E200DCC783 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
+		E893C02B1F9709F600CFA15E /* EnvelopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvelopeView.swift; sourceTree = "<group>"; };
+		E893C02D1F970E6600CFA15E /* GlobalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalView.swift; sourceTree = "<group>"; };
 		E8A5F3331ECCDF0900C5310D /* Conductor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		E8DFC70D1ECB7DBD00A6360C /* TunerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunerViewController.swift; sourceTree = "<group>"; };
 		E8E449F81EC9561B005F787A /* Bliptronic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bliptronic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E44A411EC956B2005F787A /* Blip.swift */,
+				E81DDF431F8C24D100598FD2 /* InstrumentRack.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -161,9 +168,11 @@
 				E86A5D191ECE297F00DCC783 /* CustomSynthControls */,
 				E8E44A451EC956CB005F787A /* BlipButton.swift */,
 				E8E44A471EC956CF005F787A /* SynthView.swift */,
-				E86A5D071ECD0AA600DCC783 /* KnobView.swift */,
-				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
+				E893C02D1F970E6600CFA15E /* GlobalView.swift */,
+				E86A5D071ECD0AA600DCC783 /* EffectsKnobView.swift */,
+				E893C02B1F9709F600CFA15E /* EnvelopeView.swift */,
 				E80713081ED4AED9007BA114 /* InstrumentScrollView.swift */,
+				E8E44A491EC956D4005F787A /* MainScreenView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -251,6 +260,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = Y95395R97T;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -344,11 +358,13 @@
 				E86A5D221ECE29E200DCC783 /* SMBasicSegmentView.swift in Sources */,
 				E86A5D211ECE29E200DCC783 /* SMBasicSegment.swift in Sources */,
 				E8E44A481EC956CF005F787A /* SynthView.swift in Sources */,
-				E86A5D081ECD0AA600DCC783 /* KnobView.swift in Sources */,
+				E86A5D081ECD0AA600DCC783 /* EffectsKnobView.swift in Sources */,
 				E86A5D231ECE29E200DCC783 /* SMSegment.swift in Sources */,
 				E86A5D111ECE297500DCC783 /* Knob.swift in Sources */,
+				E893C02E1F970E6600CFA15E /* GlobalView.swift in Sources */,
 				E86A5D171ECE297500DCC783 /* VerticalSlider.swift in Sources */,
 				E8A5F3341ECCDF0900C5310D /* Conductor.swift in Sources */,
+				E893C02C1F9709F600CFA15E /* EnvelopeView.swift in Sources */,
 				E8DFC70E1ECB7DBD00A6360C /* TunerViewController.swift in Sources */,
 				E86A5D241ECE29E200DCC783 /* SMSegmentView.swift in Sources */,
 				E86A5D141ECE297500DCC783 /* KnobMedium.swift in Sources */,
@@ -359,6 +375,7 @@
 				E86A5D181ECE297500DCC783 /* WaveformSegmentedView.swift in Sources */,
 				E86A5D151ECE297500DCC783 /* KnobSmall.swift in Sources */,
 				E8E44A421EC956B2005F787A /* Blip.swift in Sources */,
+				E81DDF441F8C24D100598FD2 /* InstrumentRack.swift in Sources */,
 				E86A5D121ECE297500DCC783 /* Knob+Touches.swift in Sources */,
 				E8E449FC1EC9561B005F787A /* AppDelegate.swift in Sources */,
 				E8E44A4C1EC956EA005F787A /* MainViewController.swift in Sources */,

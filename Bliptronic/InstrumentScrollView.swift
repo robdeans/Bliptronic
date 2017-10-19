@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import AudioKit
+
+final class Synthesizer: AKPolyphonicNode {
+    
+}
 
 class InstrumentScrollView: UIView {
     
@@ -20,8 +25,8 @@ class InstrumentScrollView: UIView {
     var instrument2 = UIButton()
     var instrument3 = UIButton()
     var instrument4 = UIButton()
-    var instrument5 = UIButton()
 
+    var buttonArray = [UIButton]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,16 +40,31 @@ class InstrumentScrollView: UIView {
     
     func configure() {
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+//        scrollView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         scrollView.layer.cornerRadius = 5
+
+        instrument1.setTitle("FM Oscillator", for: .normal)
+        instrument2.setTitle("Morphing Oscillator", for: .normal)
+        instrument3.setTitle("Phase Distortion Oscillator", for: .normal)
+        instrument4.setTitle("PWM Oscillator", for: .normal)
+
+        buttonArray = [instrument1, instrument2, instrument3, instrument4]
+
         
-        let buttonArray = [instrument1, instrument2, instrument3, instrument4, instrument5]
-        
-        for (number, button) in buttonArray.enumerated() {
-            button.setTitle("Instrument \(number)", for: .normal)
+        for (index, button) in buttonArray.enumerated() {
+            // TODO: Temporary
+            button.tag = index
+            if index == 0 {
+                button.layer.borderWidth = 2
+            }
             button.titleLabel?.font = UIFont(name: "Futura-Medium", size: 25)
             button.titleLabel?.shadowOffset = CGSize(width: 20, height: 20)
+            
             button.titleLabel?.shadowColor = UIColor.black
+
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+            button.layer.cornerRadius = 20
+            button.layer.borderColor = UIColor.cyan.cgColor
             button.addTarget(self, action: #selector(selectInstrument(_:)), for: .touchUpInside)
         }
         
@@ -53,7 +73,6 @@ class InstrumentScrollView: UIView {
         buttonStackView.distribution = .equalSpacing
         buttonStackView.spacing = 10
         buttonStackView.axis = .horizontal
-
         
     }
     
@@ -75,7 +94,14 @@ class InstrumentScrollView: UIView {
     }
     
     func selectInstrument(_ sender: UIButton) {
-        print("\(sender.titleLabel?.text ?? "nothing") selected")
+        //TODO: make this safer, aka make sure stackViewSubviews == InstrumentRackEnum cases
+        for button in buttonArray {
+            button.layer.borderWidth = 0
+        }
+        sender.layer.borderWidth = 2
+        conductor.selectedInstrument = InstrumentRackEnum(rawValue: sender.tag)!
     }
     
 }
+
+
