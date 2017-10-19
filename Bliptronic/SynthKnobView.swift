@@ -11,6 +11,12 @@ import UIKit
 import SnapKit
 import AudioKit
 
+protocol SelectedInstrumentDelegate {
+    
+    func configure(for instrument: InstrumentRackEnum)
+    
+}
+
 class SynthKnobView: UIView {
     
     let conductor = Conductor.sharedInstance
@@ -204,6 +210,35 @@ class SynthKnobView: UIView {
     
 }
 
+extension SynthKnobView: SelectedInstrumentDelegate {
+    
+    func configure(for instrument: InstrumentRackEnum) {
+        
+        switch instrument.rawValue {
+        case 0:
+            xFactorKnob.minimum = 0.0
+            xFactorKnob.maximum = 2.0
+            xFactorLabel.text = "CARRIER"
+        case 1:
+            xFactorKnob.minimum = 0.0
+            xFactorKnob.maximum = 3.0
+            xFactorLabel.text = "INDEX"
+        case 2:
+            xFactorKnob.minimum = 0.0
+            xFactorKnob.maximum = 1.0
+            xFactorLabel.text = "PHASE"
+        case 3:
+            xFactorKnob.minimum = 0.0
+            xFactorKnob.maximum = 1.0
+            xFactorLabel.text = "PULSE"
+        default:
+            break
+        }
+        
+    }
+    
+}
+
 extension SynthKnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
@@ -217,11 +252,11 @@ extension SynthKnobView: KnobSmallDelegate {
             case 1:
                 conductor.instrumentRack.fmOscillator.releaseDuration = value
             case 2:
-                print("index")
+                conductor.instrumentRack.fmOscillator.carrierMultiplier = value
             case 3:
                 print("multiplier")
             case 4:
-                print("magic")
+                print("index")
             default:
                 break
             }
@@ -233,11 +268,11 @@ extension SynthKnobView: KnobSmallDelegate {
             case 1:
                 conductor.instrumentRack.morphingOscillator.releaseDuration = value
             case 2:
-                print("index")
+                conductor.instrumentRack.morphingOscillator.index = value
             case 3:
                 print("multiplier")
             case 4:
-                print("magic")
+                print("index")
             default:
                 break
             }
@@ -249,11 +284,11 @@ extension SynthKnobView: KnobSmallDelegate {
             case 1:
                 conductor.instrumentRack.phaseDistortionOscillator.releaseDuration = value
             case 2:
-                print("index")
+                conductor.instrumentRack.phaseDistortionOscillator.phaseDistortion = value
             case 3:
                 print("multiplier")
             case 4:
-                print("magic")
+                print("index")
             default:
                 break
             }
@@ -266,11 +301,11 @@ extension SynthKnobView: KnobSmallDelegate {
             case 1:
                 conductor.instrumentRack.pwmOscillator.releaseDuration = value
             case 2:
-                print("index")
+                conductor.instrumentRack.pwmOscillator.pulseWidth = value
             case 3:
                 print("multiplier")
             case 4:
-                print("magic")
+                print("index")
             default:
                 break
             }

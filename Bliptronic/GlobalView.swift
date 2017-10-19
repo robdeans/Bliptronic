@@ -52,7 +52,6 @@ class GlobalView: UIView {
         tempoTextView.textAlignment = .center
         tempoTextView.backgroundColor = UIColor.clear
         
-        // Add buttons and functionality
         playButton = UIButton()
         playButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         playButton.addTarget(self, action: #selector(playOrPause), for: .touchUpInside)

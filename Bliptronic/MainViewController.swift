@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        Conductor.sharedInstance.selectedInstrumentDelegate = mainScreenView.synthKnobView
     }
     
     

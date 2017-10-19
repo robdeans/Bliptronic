@@ -8,7 +8,7 @@
  
  import AudioKit
  
- class Conductor {
+ class Conductor: SelectedInstrumentDelegate {
     
     static let sharedInstance = Conductor()
     
@@ -38,6 +38,7 @@
     var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
         didSet {
             configure(for: selectedInstrument)
+            selectedInstrumentDelegate?.configure(for: selectedInstrument)
         }
     }
 
@@ -46,7 +47,9 @@
     var filter = AKKorgLowPassFilter(nil)
     var mixer = AKMixer()
 
-
+    //MARK: Delegate
+    var selectedInstrumentDelegate: SelectedInstrumentDelegate?
+    
     //MARK: Init() methods
     init() {
         configure(for: selectedInstrument)
