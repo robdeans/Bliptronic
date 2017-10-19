@@ -9,6 +9,12 @@
 import AudioKit
 
 
+protocol SelectedInstrumentDelegate {
+    
+    func configure(for instrument: InstrumentRackEnum)
+    
+}
+
 //TODO: Move inside of InstrumentRack and make it a local enum
 enum InstrumentRackEnum: Int {
     case fmOscillator = 0, morphingOscillator, phaseDistortionOscillator, pwmOscillator
@@ -32,8 +38,6 @@ final class InstrumentRack {
         
         morphingOscillator = AKMorphingOscillatorBank()
         morphingOscillator.index = 3
-        morphingOscillator.attackDuration = 0.1
-        morphingOscillator.releaseDuration = 0.5
         morphingOscillator.detuningOffset = 1.0
         morphingOscillator.detuningMultiplier = 1.0
         
@@ -44,8 +48,6 @@ final class InstrumentRack {
         
         pwmOscillator = AKPWMOscillatorBank()
         pwmOscillator.pulseWidth = 0.7
-        pwmOscillator.attackDuration = 0.2
-        pwmOscillator.releaseDuration = 0.4
         pwmOscillator.detuningOffset = 0.1
         pwmOscillator.detuningMultiplier = 1.0
         

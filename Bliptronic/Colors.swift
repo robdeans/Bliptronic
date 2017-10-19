@@ -23,7 +23,7 @@ extension UIColor {
     public static let pastelLightBlue = UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0)
     public static let pastelTeal = UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)
     
-    func generateRandomColor() -> UIColor {
+    public static func generateRandomColor() -> UIColor {
         let red = Double(arc4random_uniform(256))
         let green = Double(arc4random_uniform(256))
         let blue = Double(arc4random_uniform(256))

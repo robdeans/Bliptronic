@@ -38,7 +38,6 @@
     var selectedInstrument: InstrumentRackEnum! = InstrumentRackEnum(rawValue: 0) {
         didSet {
             configure(for: selectedInstrument)
-            selectedInstrumentDelegate?.configure(for: selectedInstrument)
         }
     }
 
@@ -46,9 +45,6 @@
     var reverb = AKReverb2(nil)
     var filter = AKKorgLowPassFilter(nil)
     var mixer = AKMixer()
-
-    //MARK: Delegate
-    var selectedInstrumentDelegate: SelectedInstrumentDelegate?
     
     //MARK: Init() methods
     init() {

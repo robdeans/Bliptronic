@@ -11,34 +11,21 @@ import UIKit
 import SnapKit
 import AudioKit
 
-protocol SelectedInstrumentDelegate {
-    
-    func configure(for instrument: InstrumentRackEnum)
-    
-}
-
 class SynthKnobView: UIView {
     
     let conductor = Conductor.sharedInstance
     
-    //TODO: Tempo Slider
-    //      Waveform scrolling stackview
-    //      Cutoff / Resonance / Attack Knobs
-    
     var attackKnob: KnobSmall!
+    var decayKnob: KnobSmall!
     var releaseKnob: KnobSmall!
-    var indexKnob: KnobSmall!
-    var multiplierKnob: KnobSmall!
-    var xFactorKnob: KnobSmall!
+    var sustainKnob: KnobSmall!
     
     var attackLabel: UILabel!
+    var decayLabel: UILabel!
     var releaseLabel: UILabel!
-    var indexLabel: UILabel!
-    var multiplierLabel: UILabel!
-    var xFactorLabel: UILabel!
+    var sustainLabel: UILabel!
     
-    var knobStackView: UIStackView!
-    
+    //    var knobStackView: UIStackView!
     
     
     // MARK: Initialization
@@ -57,36 +44,32 @@ class SynthKnobView: UIView {
         attackLabel = UILabel()
         attackLabel.text = "ATTACK"
         
+        decayLabel = UILabel()
+        decayLabel.text = "DECAY"
+        
         releaseLabel = UILabel()
         releaseLabel.text = "RELEASE"
         
-        indexLabel = UILabel()
-        indexLabel.text = "INDEX"
+        sustainLabel = UILabel()
+        sustainLabel.text = "SUSTAIN"
         
-        multiplierLabel = UILabel()
-        multiplierLabel.text = "MULTIPLIER"
-        
-        xFactorLabel = UILabel()
-        xFactorLabel.text = "????"
-        
-        let labelArray = [attackLabel, releaseLabel, indexLabel, multiplierLabel, xFactorLabel]
+        let labelArray = [attackLabel, releaseLabel, decayLabel, sustainLabel]
         
         for label in labelArray {
             label?.font = UIFont(name: "Futura-Medium", size: 12)
             label?.textColor = UIColor.white
             label?.textAlignment = .center
             label?.numberOfLines = 0
-            //            label?.lineBreakMode = .byWordWrapping
-            
         }
         
         attackKnob = KnobSmall()
+        decayKnob = KnobSmall()
         releaseKnob = KnobSmall()
-        indexKnob = KnobSmall()
-        multiplierKnob = KnobSmall()
-        xFactorKnob = KnobSmall()
+        sustainKnob = KnobSmall()
         
-        let knobArray = [attackKnob, releaseKnob, xFactorKnob]
+        
+        // This array order is CRITICAL for assigning tags
+        let knobArray = [attackKnob, decayKnob, sustainKnob, releaseKnob]
         
         for (index, knob) in knobArray.enumerated() {
             knob?.tag = index
@@ -94,147 +77,95 @@ class SynthKnobView: UIView {
             knob?.delegate = self
         }
         
-        // If knob is a logarithmic measurement, use 0-1.0 range and calculate
-        // If linear use measurement's min and max values
-        
         attackKnob.minimum = 0.001
         attackKnob.maximum = 2.0
-        attackKnob.value = 0.1
+        attackKnob.value = 0.2
+        
+        decayKnob.minimum = 0.01
+        decayKnob.maximum = 1.00
+        decayKnob.value = 0.1
+        
+        sustainKnob.minimum = 0.0
+        sustainKnob.maximum = 1.0
+        sustainKnob.value = 1.0
         
         releaseKnob.minimum = 0.01
-        releaseKnob.maximum = 2.00
-        releaseKnob.value = 0.1
+        releaseKnob.maximum = 1.0
+        releaseKnob.value = 0.5
         
-        xFactorKnob.minimum = 0.0
-        xFactorKnob.maximum = 2.0
-        xFactorKnob.value = 1.0
-        
-        /*
-         indexKnob.minimum = 0.0
-         indexKnob.maximum = 1.0
-         indexKnob.value = 0.5
-         
-         multiplierKnob.minimum = 0.0001
-         multiplierKnob.maximum = 1.0
-         multiplierKnob.value = 0.5
-         */
         
         //Knob class inherits from UIView so this should work
-        knobStackView = UIStackView(arrangedSubviews: knobArray as! [UIView])
-        knobStackView.alignment = .center
-        knobStackView.distribution = .equalSpacing
-        knobStackView.spacing = 5
-        knobStackView.axis = .horizontal
+        //        knobStackView = UIStackView(arrangedSubviews: knobArray as! [UIView])
+        //        knobStackView.alignment = .center
+        //        knobStackView.distribution = .equalSpacing
+        //        knobStackView.spacing = 5
+        //        knobStackView.axis = .horizontal
         
     }
     
     //TODO: Add a stackview
     func constrain() {
         
-//        addSubview(knobStackView)
-//        knobStackView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
+        //        addSubview(knobStackView)
+        //        knobStackView.snp.makeConstraints {
+        //            $0.edges.equalToSuperview()
+        //        }
         
-         addSubview(attackKnob)
-         attackKnob.snp.makeConstraints {
-         $0.top.equalToSuperview()
-         $0.leading.equalToSuperview().offset(5)
-         $0.width.height.equalTo(65)
-         }
-         
-         addSubview(attackLabel)
-         attackLabel.snp.makeConstraints {
-         $0.top.equalTo(attackKnob.snp.bottom)
-         $0.centerX.equalTo(attackKnob.snp.centerX).offset(3)
-         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-         }
-         
-         addSubview(releaseKnob)
-         releaseKnob.snp.makeConstraints {
-         $0.top.equalToSuperview()
-         $0.leading.equalTo(attackKnob.snp.trailing).offset(5)
-         $0.width.height.equalTo(65)
-         }
-         
-         addSubview(releaseLabel)
-         releaseLabel.snp.makeConstraints {
-         $0.top.equalTo(releaseKnob.snp.bottom)
-         $0.centerX.equalTo(releaseKnob.snp.centerX).offset(3)
-         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-         }
-        
-        addSubview(xFactorKnob)
-        xFactorKnob.snp.makeConstraints {
+        addSubview(attackKnob)
+        attackKnob.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(releaseKnob.snp.trailing).offset(5)
+            $0.leading.equalToSuperview().offset(5)
             $0.width.height.equalTo(65)
         }
         
-        addSubview(xFactorLabel)
-        xFactorLabel.snp.makeConstraints {
-            $0.top.equalTo(xFactorKnob.snp.bottom)
-            $0.centerX.equalTo(xFactorKnob.snp.centerX).offset(3)
+        addSubview(attackLabel)
+        attackLabel.snp.makeConstraints {
+            $0.top.equalTo(attackKnob.snp.bottom)
+            $0.centerX.equalTo(attackKnob.snp.centerX).offset(3)
             $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
         }
-         /*
-         addSubview(indexKnob)
-         indexKnob.snp.makeConstraints {
-         $0.top.equalToSuperview()
-         $0.leading.equalTo(releaseKnob.snp.trailing).offset(5)
-         $0.width.height.equalTo(65)
-         }
-         
-         addSubview(indexLabel)
-         indexLabel.snp.makeConstraints {
-         $0.top.equalTo(indexKnob.snp.bottom)
-         $0.centerX.equalTo(indexKnob.snp.centerX).offset(3)
-         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-         }
-         
-         addSubview(multiplierKnob)
-         multiplierKnob.snp.makeConstraints {
-         $0.top.equalToSuperview()
-         $0.leading.equalTo(indexKnob.snp.trailing).offset(5)
-         $0.width.height.equalTo(65)
-         }
-         
-         addSubview(multiplierLabel)
-         multiplierLabel.snp.makeConstraints {
-         $0.top.equalTo(multiplierKnob.snp.bottom)
-         $0.centerX.equalTo(multiplierKnob.snp.centerX).offset(3)
-         $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
-         }
-         */
-    }
-    
-}
-
-extension SynthKnobView: SelectedInstrumentDelegate {
-    
-    func configure(for instrument: InstrumentRackEnum) {
         
-        switch instrument.rawValue {
-        case 0:
-            xFactorKnob.minimum = 0.0
-            xFactorKnob.maximum = 2.0
-            xFactorLabel.text = "CARRIER"
-        case 1:
-            xFactorKnob.minimum = 0.0
-            xFactorKnob.maximum = 3.0
-            xFactorLabel.text = "INDEX"
-        case 2:
-            xFactorKnob.minimum = 0.0
-            xFactorKnob.maximum = 1.0
-            xFactorLabel.text = "PHASE"
-        case 3:
-            xFactorKnob.minimum = 0.0
-            xFactorKnob.maximum = 1.0
-            xFactorLabel.text = "PULSE"
-        default:
-            break
+        addSubview(decayKnob)
+        decayKnob.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(attackKnob.snp.trailing).offset(5)
+            $0.width.height.equalTo(65)
         }
         
+        addSubview(decayLabel)
+        decayLabel.snp.makeConstraints {
+            $0.top.equalTo(decayKnob.snp.bottom)
+            $0.centerX.equalTo(decayKnob.snp.centerX).offset(3)
+            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+        }
+        
+        addSubview(sustainKnob)
+        sustainKnob.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(decayKnob.snp.trailing).offset(5)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(sustainLabel)
+        sustainLabel.snp.makeConstraints {
+            $0.top.equalTo(sustainKnob.snp.bottom)
+            $0.centerX.equalTo(sustainKnob.snp.centerX).offset(3)
+            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+        }
+        
+        addSubview(releaseKnob)
+        releaseKnob.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(sustainKnob.snp.trailing)
+            $0.width.height.equalTo(65)
+        }
+        
+        addSubview(releaseLabel)
+        releaseLabel.snp.makeConstraints {
+            $0.top.equalTo(releaseKnob.snp.bottom)
+            $0.centerX.equalTo(releaseKnob.snp.centerX).offset(3)
+            $0.width.equalTo(attackKnob.snp.width).multipliedBy(1.2)
+        }
     }
     
 }
@@ -242,77 +173,36 @@ extension SynthKnobView: SelectedInstrumentDelegate {
 extension SynthKnobView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
-        
-        //TODO: This is ridiculous
-        switch conductor.selectedInstrument.rawValue {
+        print(value)
+        switch tag {
         case 0:
-            switch tag {
-            case 0:
-                conductor.instrumentRack.fmOscillator.attackDuration = value
-            case 1:
-                conductor.instrumentRack.fmOscillator.releaseDuration = value
-            case 2:
-                conductor.instrumentRack.fmOscillator.carrierMultiplier = value
-            case 3:
-                print("multiplier")
-            case 4:
-                print("index")
-            default:
-                break
-            }
+            conductor.instrumentRack.fmOscillator.attackDuration = value
+            conductor.instrumentRack.morphingOscillator.attackDuration = value
+            conductor.instrumentRack.phaseDistortionOscillator.attackDuration = value
+            conductor.instrumentRack.pwmOscillator.attackDuration = value
             
         case 1:
-            switch tag {
-            case 0:
-                conductor.instrumentRack.morphingOscillator.attackDuration = value
-            case 1:
-                conductor.instrumentRack.morphingOscillator.releaseDuration = value
-            case 2:
-                conductor.instrumentRack.morphingOscillator.index = value
-            case 3:
-                print("multiplier")
-            case 4:
-                print("index")
-            default:
-                break
-            }
+            conductor.instrumentRack.fmOscillator.decayDuration = value
+            conductor.instrumentRack.morphingOscillator.decayDuration = value
+            conductor.instrumentRack.phaseDistortionOscillator.decayDuration = value
+            conductor.instrumentRack.pwmOscillator.decayDuration = value
             
         case 2:
-            switch tag {
-            case 0:
-                conductor.instrumentRack.phaseDistortionOscillator.attackDuration = value
-            case 1:
-                conductor.instrumentRack.phaseDistortionOscillator.releaseDuration = value
-            case 2:
-                conductor.instrumentRack.phaseDistortionOscillator.phaseDistortion = value
-            case 3:
-                print("multiplier")
-            case 4:
-                print("index")
-            default:
-                break
-            }
+            conductor.instrumentRack.fmOscillator.sustainLevel = value
+            conductor.instrumentRack.morphingOscillator.sustainLevel = value
+            conductor.instrumentRack.phaseDistortionOscillator.sustainLevel = value
+            conductor.instrumentRack.pwmOscillator.sustainLevel = value
             
         case 3:
-        
-            switch tag {
-            case 0:
-                conductor.instrumentRack.pwmOscillator.attackDuration = value
-            case 1:
-                conductor.instrumentRack.pwmOscillator.releaseDuration = value
-            case 2:
-                conductor.instrumentRack.pwmOscillator.pulseWidth = value
-            case 3:
-                print("multiplier")
-            case 4:
-                print("index")
-            default:
-                break
-            }
+            conductor.instrumentRack.fmOscillator.releaseDuration = value
+            conductor.instrumentRack.morphingOscillator.releaseDuration = value
+            conductor.instrumentRack.phaseDistortionOscillator.releaseDuration = value
+            conductor.instrumentRack.pwmOscillator.releaseDuration = value
             
         default:
             break
         }
+        
     }
     
     func logarithmicFreqForValue(_ value: Double) -> Double {
