@@ -4,4 +4,4 @@ Bliptronic is a synthesizer app that uses the AudioKit framework to provide rich
 
 Improvements in the making are customizeable synth sounds, responsive user visuals, multi-track recording, and the ability to save and share songs from a private server.
 
-![alt text](https://github.com/projectrob21/Bliptronic/blob/master/blip%20screenshot.jpg)
+![alt text](https://github.com/projectrob21/Bliptronic/blob/master/blip%20screen.jpg)
