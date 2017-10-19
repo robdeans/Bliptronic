@@ -509,7 +509,7 @@
 				);
 				INFOPLIST_FILE = Bliptronic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic;
+				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -527,7 +527,7 @@
 				);
 				INFOPLIST_FILE = Bliptronic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic;
+				PRODUCT_BUNDLE_IDENTIFIER = rob.Bliptronic.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
