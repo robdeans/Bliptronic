@@ -25,6 +25,7 @@
     }
     var isPlaying = true {
         didSet {
+            print(isPlaying)
             if isPlaying {
                 sequencer.play()
             } else {

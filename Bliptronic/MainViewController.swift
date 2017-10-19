@@ -14,6 +14,8 @@ class MainViewController: UIViewController {
     
     var mainScreenView: MainScreenView!
     
+    var pastelView = PastelView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -29,7 +31,7 @@ class MainViewController: UIViewController {
         }
         
         // Add Background
-        let pastelView = PastelView(frame: view.bounds)
+        pastelView = PastelView(frame: view.bounds)
         
         // Custom Direction
         pastelView.startPastelPoint = .bottomLeft

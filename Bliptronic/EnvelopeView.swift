@@ -173,7 +173,7 @@ class EnvelopeView: UIView {
 extension EnvelopeView: KnobSmallDelegate {
     
     func updateKnobValue(_ value: Double, tag: Int) {
-        print(value)
+
         switch tag {
         case 0:
             conductor.instrumentRack.fmOscillator.attackDuration = value
